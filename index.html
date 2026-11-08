@@ -554,8 +554,7 @@ html,body{overflow-x:clip}
 
 /* ===================== БЛОК 11 «ПІСЛЯ ВІДКРИТТЯ» ===================== */
 #after{--red:#e8291f;position:relative;overflow:hidden;isolation:isolate;color:#f1eeea;min-height:56rem;padding:7rem max(84px,5.8vw);display:flex;align-items:center}
-#after .ph{position:absolute;inset:0;z-index:-2;background:url(assets/after-open.webp) 18% center/cover no-repeat;transform:scale(1.06);transition:transform 2.4s cubic-bezier(.2,.8,.2,1)}
-#after.in .ph{transform:scale(1)}
+#after .ph{position:absolute;inset:0;z-index:-2;background:url(assets/after-open.webp) 18% center/cover no-repeat}
 #after .sh{position:absolute;inset:0;z-index:-1;background:
  linear-gradient(90deg,rgba(10,12,14,.05) 0%,rgba(10,12,14,.25) 30%,rgba(10,12,14,.86) 50%,#0a0c0e 72%),
  linear-gradient(180deg,#0a0c0e 0%,rgba(10,12,14,0) 14%,rgba(10,12,14,0) 82%,#0a0c0e 100%)}
@@ -573,8 +572,8 @@ html,body{overflow-x:clip}
 #after .days b i{font-style:normal;color:var(--red)}
 #after .days p{margin-top:.4rem;font-size:1rem;font-weight:700;color:#ece8e3}
 #after .track{position:relative;margin-top:1.2rem;height:.4rem;border-radius:1rem;background:rgba(255,255,255,.12)}
-#after .track i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:inherit;background:linear-gradient(90deg,#ff5446,var(--red));box-shadow:0 0 12px rgba(232,41,31,.7);transition:width 2.2s cubic-bezier(.3,0,.2,1) .6s}
-#after.in .track i{width:100%}
+#after .track i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:inherit;background:linear-gradient(90deg,#ff5446,var(--red));box-shadow:0 0 12px rgba(232,41,31,.7);transform-origin:0 50%;transform:scaleX(0);transition:transform 2s cubic-bezier(.3,0,.2,1) .4s;will-change:transform}
+#after.in .track i{transform:scaleX(1)}
 #after .lbl{display:flex;justify-content:space-between;margin-top:.6rem;font-size:.78rem;font-weight:800;letter-spacing:.12em;color:rgba(255,255,255,.55)}
 /* текст */
 #after .txt{position:relative;margin-left:auto;width:min(40rem,48%)}
@@ -1291,7 +1290,10 @@ var io=new IntersectionObserver(function(e){if(e[0].isIntersecting&&!user&&match
 </section>
 <script>
 (function(){var s=document.getElementById('after'),li=s.querySelectorAll('.list li');[].forEach.call(li,function(e,i){e.style.transitionDelay=(.3+i*.08)+'s'});
-var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){s.classList.add('in');io.disconnect()}},{threshold:0,rootMargin:'0px 0px -20% 0px'});io.observe(s)})();
+/* анімації блоку запускаємо лише коли прокрутка зупинилась і блок на екрані */
+var vis=false,t=null;function arm(){clearTimeout(t);if(vis&&!s.classList.contains('in'))t=setTimeout(function(){if(vis)s.classList.add('in')},220)}
+var io=new IntersectionObserver(function(e){vis=e[0].isIntersecting;arm()},{threshold:0,rootMargin:'0px 0px -25% 0px'});io.observe(s);
+addEventListener('scroll',function(){if(vis&&!s.classList.contains('in'))arm()},{passive:true})})();
 </script>
 
 <section id="projects">
@@ -1491,18 +1493,8 @@ document.querySelectorAll('.band .run').forEach(function(r){
   $('.eyebrow',s).forEach(function(e){tag([e],'eye')});
   $('h2',s).forEach(function(h){head(h,.08)});
   tag($('p.lead',s),'',.28);
-  tag($('a.cta',s).filter(function(a){return !a.closest('.side,.foot,.serve')}),'pop',.42);
  });
- if(matchMedia('(min-width:768px)').matches)tag($('#for-whom .card'),'card',.1,.12);
- tag($('#formats .s'),'s',.12,.05);tag($('#turnkey .vis'),'pop',.15);tag($('#turnkey .st'),'s',.2,.07);
- tag($('#chef .facts li'),'s',.45,.08);tag($('#chef .nums>div'),'pop',.75,.12);
- var cn=document.querySelector('#chef .nums>div:nth-child(2) b');if(cn){var cw=cn.parentNode;cw.__onIn=function(){countUp(cn,850)}}
- tag($('#price .pmenu'),'s',.3);tag($('#price .note'),'s',.45);tag($('#price .serve'),'pop',.35);
- tag($('#after .days'),'pop',.3);tag($('#after .txt .note'),'s',.6);
- tag($('#projects .foot'),'s',.1);
- tag($('#faq .q'),'s',.15,.06);tag($('#faq .side'),'pop',.3);
- tag($('#lead .promise>div'),'pop',.35,.12);tag($('#lead form'),'s',.25);
- tag($('#footer .fgrid>div,#footer .fgrid>.top'),'s',0,.08);tag($('#footer .fbot'),'s',.3);
+ /* решта елементів — без анімації появи: менше роботи під час прокрутки */
 
  initHang(true);
 
