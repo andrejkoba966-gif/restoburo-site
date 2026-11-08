@@ -958,6 +958,9 @@ html,body{overflow-x:clip}
 
 
 
+/* кнопка відправки форми на ПК — за шириною тексту, як усі CTA (на всю ширину виглядала «порожньою») */
+@media (min-width:768px){#lead .send{display:inline-flex;width:auto;justify-content:flex-start;gap:1.1rem}}
+
 /* ===================== Кнопки на телефоні — єдиний стиль, без виходу за край ===================== */
 @media (max-width:767px){
  .hero .cta2,.menu .mcta,#for-whom .cta,#formats .cta,#turnkey .cta,#price .cta,#projects .cta,#faq .cta,#footer .fcta,#lead .send{
