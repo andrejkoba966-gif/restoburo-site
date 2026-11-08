@@ -1461,13 +1461,18 @@ document.querySelectorAll('.band .run').forEach(function(r){
 </div>
 <a class="fab" href="#lead" aria-label="Обговорити свій проєкт">Обговорити<br>свій проєкт <i><svg viewBox="0 0 24 24"><path d="M6 18 18 6M9 6h9v9"/></svg></i></a>
 <script>
-/* закріплена кнопка (телефон): ховається, коли на екрані вже є інша кнопка заявки, форма або відкрите меню */
-(function(){var f=document.querySelector('.fab');if(!f||!('IntersectionObserver' in window))return;var vis=new Set();
- function upd(){f.classList.toggle('hide',vis.size>0||document.body.classList.contains('menu-open'))}
- var io=new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?vis.add(e.target):vis.delete(e.target)});upd()},{threshold:0});
- [].forEach.call(document.querySelectorAll('a.cta,#lead form,#footer .fcta'),function(e){io.observe(e)});
- new MutationObserver(upd).observe(document.body,{attributes:true,attributeFilter:['class']});
- setTimeout(function(){f.classList.add('on')},1400)})();
+/* закріплена кнопка (телефон): показуємо лише в блоках, де немає власної кнопки заявки чи форми.
+   Рішення — за блоком у центрі екрана, тож кнопка змінюється тільки на межі блоків, без мерехтіння */
+(function(){var f=document.querySelector('.fab');if(!f)return;var mq=matchMedia('(max-width:767px)'),secs=[],cur=null,tk=false;
+ function own(sec){return [].some.call(sec.querySelectorAll('a.cta,a.fcta,form'),function(e){return e.offsetParent!==null&&getComputedStyle(e).display!=='none'})}
+ function geo(){secs=[].map.call(document.querySelectorAll('body>section,body>footer'),function(sec){var r=sec.getBoundingClientRect();return {top:r.top+scrollY,bot:r.bottom+scrollY,own:own(sec)}})}
+ function upd(){tk=false;if(!mq.matches)return;var mid=scrollY+innerHeight*.5,s=null;for(var i=0;i<secs.length;i++)if(mid>=secs[i].top&&mid<secs[i].bot){s=secs[i];break}
+  var hide=(s?s.own:false)||document.body.classList.contains('menu-open');if(hide!==cur){cur=hide;f.classList.toggle('hide',hide)}}
+ addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(upd)}},{passive:true});
+ addEventListener('resize',function(){geo();upd()});addEventListener('load',function(){geo();upd()});
+ if(window.ResizeObserver)new ResizeObserver(function(){geo();upd()}).observe(document.body);
+ new MutationObserver(function(){cur=null;upd()}).observe(document.body,{attributes:true,attributeFilter:['class']});
+ geo();upd();setTimeout(function(){f.classList.add('on')},1400)})();
 </script>
 <footer id="footer">
  <div class="fgrid">
