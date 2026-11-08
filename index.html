@@ -263,6 +263,7 @@ body.menu-open .menu nav a:nth-child(5){transition-delay:.2s}
 #for-whom .c1 .sh{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,12,14,.1) 30%,rgba(10,12,14,.92) 100%)}
 #for-whom .c1:before{display:none}
 #for-whom .eyebrow{display:block}
+#for-whom .tx{display:contents}
 #for-whom .cta-end{display:none}
 /* ===== ТЕЛЕФОН: картки збираються в колоду під кутом ===== */
 @media (max-width:767px){
@@ -274,7 +275,12 @@ body.menu-open .menu nav a:nth-child(5){transition-delay:.2s}
   transform-origin:50% 0;transform:scale(var(--s,1));transition:none;box-shadow:0 -14px 40px rgba(0,0,0,.55);will-change:transform}
  #for-whom .card:after{content:"";position:absolute;inset:-1px;border-radius:inherit;background:#050607;opacity:var(--o,0);pointer-events:none;z-index:3}
  #for-whom .card:hover{transform:scale(var(--s,1))}
- #for-whom .c1{min-height:262px;justify-content:flex-end}
+ #for-whom .c1{min-height:0;justify-content:flex-start;padding:0;background:none!important;border:0;box-shadow:none}
+ /* фото окремо, текст — на плашці в стилі інших карток, що наїжджає на фото */
+ #for-whom .c1 .ph{position:relative;inset:auto;height:230px;border-radius:22px;background-size:cover;background-position:30% 62%;border:1px solid rgba(255,255,255,.12)}
+ #for-whom .c1 .sh{display:none}
+ #for-whom .c1 .tx{display:block;position:relative;z-index:1;margin:-58px 12px 0;padding:22px 20px 24px;border-radius:20px;
+  background:linear-gradient(160deg,#2a2223,#161314);border:1px solid rgba(255,255,255,.16);box-shadow:0 -10px 30px rgba(0,0,0,.45)}
  #for-whom .card:last-child{margin-bottom:0}
  #for-whom .head .cta{display:none}
  #for-whom .cta-end{display:inline-flex;margin-top:26px}
@@ -1112,7 +1118,7 @@ if(document.documentElement.classList.contains('intro')){var h=document.querySel
  <div class="band dark"><div class="run" data-items="RESTOBURO|Ресторанний консалтинг|Запуск і перезапуск закладів"></div></div>
  <div class="band red"><div class="run" data-items="Піцерії|Бургерні|Кав'ярні|Суші|Пекарні та кондитерські|Dark kitchen|Кафе та ресторани|Індивідуальні формати|Стритфуд і фастфуд|Шаурма та чебуречні"></div></div>
 </div></div>
-<section class="sec" id="for-whom"><div class="eyebrow">ДЛЯ КОГО</div><div class="head"><h2>Для кого<br>наші <em>послуги?</em></h2><div><p class="lead">Допомагаємо тим, хто планує відкрити власний заклад, і&nbsp;власникам діючого бізнесу, яким потрібні оновлення, перезапуск або допомога з&nbsp;окремими процесами.</p><a class="cta">Обговорити мою ідею <i><svg viewBox="0 0 24 24"><path d="M6 18 18 6M9 6h9v9"/></svg></i></a></div></div><div class="grid"><article class="card c1"><div class="ph" style="--pos:22% 62%"></div><div class="sh"></div><h3>Відкриваєте перший заклад</h3><p>Допоможемо обрати формат, спланувати бюджет і&nbsp;організувати етапи запуску, навіть якщо ви раніше не&nbsp;працювали в&nbsp;ресторанній сфері.</p></article><article class="card c2"><h3>Маєте комерційне приміщення</h3><p>Проаналізуємо локацію та&nbsp;цільову аудиторію, запропонуємо формат відповідно до&nbsp;особливостей приміщення.</p></article><article class="card c3"><h3>Хочете перезапустити або оновити заклад</h3><p>Допоможемо переглянути концепцію, оновити меню та&nbsp;процеси роботи.</p></article><article class="card c4"><h3>Потрібне конкретне рішення</h3><p>Можемо долучитися до&nbsp;розробки меню, технологічних карт, організації роботи кухні чи&nbsp;навчання персоналу.</p><div class="chips"><span>Меню</span><span>Технологічні карти</span><span>Робота кухні</span><span>Навчання персоналу</span></div></article></div><a class="cta cta-end" href="#lead">Обговорити мою ідею <i><svg viewBox="0 0 24 24"><path d="M6 18 18 6M9 6h9v9"/></svg></i></a></section>
+<section class="sec" id="for-whom"><div class="eyebrow">ДЛЯ КОГО</div><div class="head"><h2>Для кого<br>наші <em>послуги?</em></h2><div><p class="lead">Допомагаємо тим, хто планує відкрити власний заклад, і&nbsp;власникам діючого бізнесу, яким потрібні оновлення, перезапуск або допомога з&nbsp;окремими процесами.</p><a class="cta">Обговорити мою ідею <i><svg viewBox="0 0 24 24"><path d="M6 18 18 6M9 6h9v9"/></svg></i></a></div></div><div class="grid"><article class="card c1"><div class="ph" style="--pos:22% 62%"></div><div class="sh"></div><div class="tx"><h3>Відкриваєте перший заклад</h3><p>Допоможемо обрати формат, спланувати бюджет і&nbsp;організувати етапи запуску, навіть якщо ви раніше не&nbsp;працювали в&nbsp;ресторанній сфері.</p></div></article><article class="card c2"><h3>Маєте комерційне приміщення</h3><p>Проаналізуємо локацію та&nbsp;цільову аудиторію, запропонуємо формат відповідно до&nbsp;особливостей приміщення.</p></article><article class="card c3"><h3>Хочете перезапустити або оновити заклад</h3><p>Допоможемо переглянути концепцію, оновити меню та&nbsp;процеси роботи.</p></article><article class="card c4"><h3>Потрібне конкретне рішення</h3><p>Можемо долучитися до&nbsp;розробки меню, технологічних карт, організації роботи кухні чи&nbsp;навчання персоналу.</p><div class="chips"><span>Меню</span><span>Технологічні карти</span><span>Робота кухні</span><span>Навчання персоналу</span></div></article></div><a class="cta cta-end" href="#lead">Обговорити мою ідею <i><svg viewBox="0 0 24 24"><path d="M6 18 18 6M9 6h9v9"/></svg></i></a></section>
 
 <section id="formats">
  <div class="top"><div><div class="eyebrow">ФОРМАТИ</div><h2>Які заклади<br>ми <em>відкриваємо?</em></h2></div><div><p class="lead">Працюємо з&nbsp;різними форматами — від невеликих точок швидкого харчування до&nbsp;кафе та&nbsp;ресторанів. Формат підбираємо відповідно до&nbsp;приміщення, бюджету та&nbsp;цільової аудиторії.</p><a class="cta" href="#lead">Обговорити формат закладу <i><svg viewBox="0 0 24 24"><path d="M6 18 18 6M9 6h9v9"/></svg></i></a></div></div>
