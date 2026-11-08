@@ -720,10 +720,11 @@ html,body{overflow-x:clip}
 #projects .p{position:relative;overflow:hidden;border-radius:1.6rem;border:1px solid rgba(255,255,255,.1);cursor:pointer;isolation:isolate;
  opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1),border-color .4s}
 #projects.in .p{opacity:1;transform:none}
-#projects .p .img{position:absolute;inset:0;z-index:-2;background:var(--src) var(--pos,center)/cover no-repeat;transition:transform 1.4s cubic-bezier(.2,.8,.2,1),filter .6s;filter:brightness(.82) saturate(1.05)}
+#projects .p .img{position:absolute;inset:0;z-index:-2;background:var(--src) var(--pos,center)/cover no-repeat;transition:transform 1.4s cubic-bezier(.2,.8,.2,1)}
+#projects .p .img:after{content:"";position:absolute;inset:0;background:#000;opacity:.18;transition:opacity .6s}
 #projects .p:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,12,14,0) 40%,rgba(10,12,14,.55) 70%,rgba(10,12,14,.94) 100%)}
 #projects .p:hover{border-color:rgba(232,41,31,.55)}
-#projects .p:hover .img{transform:scale(1.06);filter:brightness(.95) saturate(1.1)}
+#projects .p:hover .img{transform:scale(1.06)}#projects .p:hover .img:after{opacity:.05}
 #projects .p .live{position:absolute;right:1.3rem;top:1.3rem;display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .8rem;border-radius:999px;background:rgba(10,12,14,.6);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px);font-size:.72rem;font-weight:800;letter-spacing:.14em}
 #projects .p .live i{width:.5rem;height:.5rem;border-radius:50%;background:#3ddc6e;box-shadow:0 0 10px #3ddc6e;animation:pulse 1.8s ease-in-out infinite}
 @keyframes pulse{50%{opacity:.35}}
@@ -1017,6 +1018,22 @@ html.intro .seam .band.red{animation:hBandL 1.6s cubic-bezier(.16,1,.3,1) 0.85s 
 /* ===================== Продуктивність: окремі шари для того, що змінюється під час скролу ===================== */
 @media (min-width:1180px){#turnkey .canvas,#turnkey .meter{will-change:transform}
 }
+
+
+/* ===================== ПРОДУКТИВНІСТЬ: без backdrop-filter =====================
+   Розмиття під «склом» відеокарта перераховує на кожному кадрі прокрутки — це й давало фризи.
+   Натомість трохи щільніший фон панелей: на темному тлі виглядає так само. */
+*,*:before,*:after{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.nav,.hcta{background:rgba(20,23,26,.78)}
+.burger{background:rgba(20,23,26,.8)}
+.hero .plate{background:linear-gradient(180deg,rgba(62,58,57,.9),rgba(30,28,28,.92))}
+#chef .glass{background:linear-gradient(160deg,rgba(38,34,34,.9),rgba(15,14,15,.94))}
+#after .days{background:linear-gradient(160deg,rgba(38,34,34,.9),rgba(15,14,15,.94))}
+@media (min-width:768px){#price .pmenu{background:rgba(14,10,10,.84)}}
+#projects .p .live{background:rgba(10,12,14,.82)}
+#faq .q{background:rgba(14,12,13,.86)}
+#faq .side{background:rgba(14,12,13,.84)}
+@media (max-width:1179px){.mbar{background:linear-gradient(180deg,rgba(10,12,14,.97),rgba(10,12,14,.92))}.mbar .pill{background:rgba(38,40,44,.9)}}
 
 /* ===================== Пауза нескінченних анімацій поза екраном ===================== */
 .zz-off,.zz-off *{animation-play-state:paused!important}
