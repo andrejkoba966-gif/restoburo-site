@@ -452,6 +452,8 @@ html,body{overflow-x:clip}
  #turnkey .steps{padding-left:0}
  #turnkey .top .cta{display:none}
  #turnkey .cta-end{display:inline-flex;margin-top:1.8rem}
+ /* сцена «прилипає» під шапкою, поки гортаєш етапи — результат натискання завжди видно */
+ #turnkey .vis{position:sticky;top:74px;z-index:4;margin:0 -40px;padding:10px 40px 14px;background:#0a0c0e;box-shadow:0 14px 18px -6px #0a0c0e}
 }
 @media (max-width:767px){
  #turnkey .tkpin{padding:4.6rem 20px 4rem}
@@ -459,7 +461,9 @@ html,body{overflow-x:clip}
  #turnkey h2{font-size:32px}
  #turnkey .lead{font-size:16px}
  #turnkey .cta{height:56px;font-size:14px;gap:14px;padding:0 6px 0 20px}#turnkey .cta i{width:44px;height:44px}
- #turnkey .canvas{height:290px}
+ #turnkey .canvas{height:230px}
+ #turnkey .vis{top:68px;margin:0 -20px;padding:8px 20px 12px}
+ #turnkey .meter b{font-size:30px}
  #turnkey .meter b{font-size:30px}
  #turnkey .st .row{padding:12px 14px;gap:12px}
  #turnkey .st .n{width:32px;height:32px;font-size:12px}
@@ -1195,8 +1199,11 @@ if(document.documentElement.classList.contains('intro')){var h=document.querySel
  function scrollPos(){var tot=hgt-innerHeight;return Math.min(.9999,Math.max(0,(scrollY-top0)/tot))}
  function onScroll(){if(!mq.matches)return;var y=scrollY;if(y<top0-innerHeight||y>top0+hgt)return;var p=scrollPos()*N,i=Math.floor(p),f=Math.round((p-i)*500)/500;set(i);if(f!==lastF||i!==cur){lastF=f;st[i].style.setProperty('--f',f)}}
  geo();if(window.ResizeObserver)new ResizeObserver(function(){geo();onScroll()}).observe(document.body);addEventListener('load',function(){geo();onScroll()});
- st.forEach(function(e,i){e.addEventListener('click',function(){if(mq.matches){var tot=root.offsetHeight-innerHeight,y=root.getBoundingClientRect().top+scrollY+tot*(i+.02)/N;(window.__glide?window.__glide(y):scrollTo({top:y,behavior:'smooth'}))}else set(i)})});
- addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',function(){cur=-1;geo();mq.matches?onScroll():set(0)});
+ st.forEach(function(e,i){e.addEventListener('click',function(){if(mq.matches){var tot=root.offsetHeight-innerHeight,y=root.getBoundingClientRect().top+scrollY+tot*(i+.02)/N;(window.__glide?window.__glide(y):scrollTo({top:y,behavior:'smooth'}))}else{set(i);
+   /* якщо після розкриття етап сховався під «прилиплою» сценою — плавно підкрутимо */
+   setTimeout(function(){var v=root.querySelector('.vis').getBoundingClientRect().bottom,r=e.getBoundingClientRect();
+    if(r.top<v+8||r.bottom>innerHeight-8){var y=scrollY+r.top-v-12;window.__glide?window.__glide(y):scrollTo({top:y,behavior:'smooth'})}},560)}})});
+ addEventListener('scroll',onScroll,{passive:true});var lw=innerWidth;addEventListener('resize',function(){geo();if(innerWidth===lw)return;lw=innerWidth;cur=-1;mq.matches?onScroll():set(0)});
  mq.matches?onScroll():set(0);
 })();
 </script>
