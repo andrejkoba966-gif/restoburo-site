@@ -3,7 +3,7 @@
 <link rel="preload" href="assets/manrope-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/manrope-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/restaurant.webp" as="image" fetchpriority="high">
-<script>(function(d){d.classList.add('js');try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('motion','intro')}catch(e){}})(document.documentElement)</script>
+<script>(function(d){d.classList.add('js');var q=location.search;try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&q.indexOf('noanim')<0)d.classList.add('motion','intro')}catch(e){}if(q.indexOf('nolenis')>-1)d.classList.add('nolenis')})(document.documentElement)</script>
 <style>
 /* 1rem = 14px на 1440×900; плавно росте на великих екранах (до 20px), не стискається на ноутбуках */
 html{font-size:clamp(14px,min(.9722vw,1.6vh),20px)}
@@ -25,8 +25,8 @@ html,body{margin:0;background:#0a0c0e}
 
 /* шеф + декор + плашки */
 .cw{position:absolute;bottom:0;height:var(--h);aspect-ratio:853/1280;left:max(44.4vw,620px);z-index:3}
-.cw>img{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(-14px 0 26px rgba(232,41,31,.38)) drop-shadow(0 30px 50px rgba(0,0,0,.65))}
-.halo{position:absolute;left:-7%;top:9%;width:126%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(232,41,31,.6),rgba(232,41,31,.14) 52%,transparent 70%);filter:blur(10px)}
+.cw>img{position:absolute;inset:0;width:100%;height:100%}
+.halo{position:absolute;left:-7%;top:9%;width:126%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(232,41,31,.58),rgba(232,41,31,.3) 30%,rgba(232,41,31,.12) 54%,transparent 72%)}
 .ring{position:absolute;border-radius:50%;border:1.5px solid rgba(232,41,31,.55);aspect-ratio:1}
 .plate{position:absolute;z-index:6;padding:.8rem 1.3rem;border-radius:.75rem;font-size:1rem;font-weight:600;display:flex;align-items:center;white-space:nowrap;color:#f0eeeb;
  background:linear-gradient(180deg,rgba(70,66,64,.62),rgba(34,32,32,.62));border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(14px);box-shadow:0 18px 40px rgba(0,0,0,.35)}
@@ -120,7 +120,7 @@ body.menu-open .menu nav a:nth-child(5){transition-delay:.2s}
  .copy h1{order:2;position:relative;z-index:5;margin:12px 20px 0;font-size:32px;line-height:1.02}
 
  .cw{order:3;position:relative;left:auto;bottom:auto;width:100%;height:490px;aspect-ratio:auto;margin-top:6px;flex:none}
- .cw>img{left:50%;right:auto;width:auto;height:100%;transform:translateX(-50%);filter:drop-shadow(-10px 0 22px rgba(232,41,31,.35)) drop-shadow(0 20px 40px rgba(0,0,0,.6))}
+ .cw>img{left:50%;right:auto;width:auto;height:100%;transform:translateX(-50%)}
  .cw .halo{left:50%;top:50px;width:115%;transform:translateX(-50%);background:radial-gradient(circle,rgba(232,41,31,.45),rgba(232,41,31,.08) 50%,transparent 68%)}
  .cw .ring{display:none}
  .plate{font-size:13px;padding:9px 13px}
@@ -949,19 +949,19 @@ html.lenis,html.lenis body{height:auto}
 
 /* ===================== АНІМАЦІЇ (лише transform/opacity — без конфліктів з наявними transform) =====================
    Використовуємо окремі властивості translate/scale/rotate: вони складаються з уже наявним transform елементів. */
-@keyframes rvUp{from{opacity:0;translate:0 1.8rem;filter:blur(6px)}to{opacity:1;translate:0 0;filter:blur(0)}}
+@keyframes rvUp{from{opacity:0;translate:0 1.6rem}to{opacity:1;translate:0 0}}
 @keyframes rvUpS{from{opacity:0;translate:0 1.4rem}to{opacity:1;translate:0 0}}
 @keyframes rvPop{from{opacity:0;translate:0 1.2rem;scale:.9}to{opacity:1;translate:0 0;scale:1}}
 @keyframes rvCard{from{opacity:0;translate:0 3.2rem;scale:.96}to{opacity:1;translate:0 0;scale:1}}
 @keyframes rvEye{from{opacity:0;clip-path:inset(0 100% 0 0);translate:-.6rem 0}to{opacity:1;clip-path:inset(0 0 0 0);translate:0 0}}
-@keyframes rvWord{from{translate:0 125%;rotate:5deg}to{translate:0 0;rotate:0deg}}
+@keyframes rvWord{from{opacity:0;translate:0 .55em}to{opacity:1;translate:0 0}}
 @keyframes rvFade{from{opacity:0}to{opacity:1}}
 
 /* слова заголовків: кожне «виїжджає» з-під маски */
-.wd{display:inline-block;clip-path:inset(-.3em -.4em -.12em -.4em)}
+.wd{display:inline-block}
 .wd>span{display:inline-block;transform-origin:0 100%}
 .split.wd-done .wd{clip-path:none}
-.motion .split:not(.is-in) .wd>span{translate:0 125%}
+.motion .split:not(.is-in) .wd>span{opacity:0}
 .motion .split.is-in:not(.wd-done) .wd>span{animation:rvWord 1.05s cubic-bezier(.16,1,.3,1) backwards;animation-delay:calc(var(--d0,0s) + var(--wi,0) * 55ms)}
 
 .motion [data-rv]:not(.is-in){opacity:0}
@@ -1036,7 +1036,7 @@ html.intro .seam .band.red{animation:hBandL 1.6s cubic-bezier(.16,1,.3,1) 0.85s 
 @media (max-width:1179px){.mbar{background:linear-gradient(180deg,rgba(10,12,14,.97),rgba(10,12,14,.92))}.mbar .pill{background:rgba(38,40,44,.9)}}
 
 /* ===================== Пауза нескінченних анімацій поза екраном ===================== */
-.zz-off,.zz-off *{animation-play-state:paused!important}
+
 
 </style>
 <body><section class="hero">
@@ -1045,7 +1045,7 @@ html.intro .seam .band.red{animation:hBandL 1.6s cubic-bezier(.16,1,.3,1) 0.85s 
  <div class="halo"></div>
  <div class="ring" style="left:1.8%;top:15.7%;width:108%;border-color:rgba(255,255,255,.12)"></div>
  <div class="ring" style="left:10.8%;top:21.7%;width:90%"></div>
- <img fetchpriority="high" decoding="async" src="assets/owner-cutout.webp" alt="Шеф Dmitriy Bars">
+ <img fetchpriority="high" decoding="async" src="assets/owner-cutout-fx.webp" alt="Шеф Dmitriy Bars">
  <div class="plate p-a" style="left:76%;top:37%"><span class="dot"></span>Практика запуску з 2012 року</div>
  <div class="plate p-b" style="left:72%;top:70%"><span class="dot"></span><span class="n">20+</span>відкритих проєктів</div>
 </div>
@@ -1187,10 +1187,13 @@ if(document.documentElement.classList.contains('intro')){var h=document.querySel
  function count(to){clearInterval(tm);var from=shown,k=0;tm=setInterval(function(){k=Math.min(1,k+1/18);shown=Math.round(from+(to-from)*(1-Math.pow(1-k,3)));pct.textContent=shown;if(k>=1)clearInterval(tm)},30)}
  function set(i){if(i===cur)return;cur=i;var c='canvas in';for(var k=1;k<=i+1;k++)c+=' s'+k;cv.setAttribute('class',c);
   st.forEach(function(e,k){e.classList.toggle('on',k===i);e.classList.toggle('done',k<i)});count(Math.round((i+1)/N*100));nm.textContent=names[i];}
- function scrollPos(){var r=root.getBoundingClientRect(),tot=root.offsetHeight-innerHeight;return Math.min(.9999,Math.max(0,-r.top/tot))}
- function onScroll(){if(!mq.matches)return;var p=scrollPos()*N,i=Math.floor(p);set(i);st[i].style.setProperty('--f',(p-i).toFixed(4))}
+ /* геометрію кешуємо — під час прокрутки жодних вимірів верстки (інакше браузер перераховує layout на кожному кадрі) */
+ var top0=0,hgt=0,lastF=-1;function geo(){top0=root.getBoundingClientRect().top+scrollY;hgt=root.offsetHeight}
+ function scrollPos(){var tot=hgt-innerHeight;return Math.min(.9999,Math.max(0,(scrollY-top0)/tot))}
+ function onScroll(){if(!mq.matches)return;var y=scrollY;if(y<top0-innerHeight||y>top0+hgt)return;var p=scrollPos()*N,i=Math.floor(p),f=Math.round((p-i)*500)/500;set(i);if(f!==lastF||i!==cur){lastF=f;st[i].style.setProperty('--f',f)}}
+ geo();if(window.ResizeObserver)new ResizeObserver(function(){geo();onScroll()}).observe(document.body);addEventListener('load',function(){geo();onScroll()});
  st.forEach(function(e,i){e.addEventListener('click',function(){if(mq.matches){var tot=root.offsetHeight-innerHeight,y=root.getBoundingClientRect().top+scrollY+tot*(i+.02)/N;(window.__glide?window.__glide(y):scrollTo({top:y,behavior:'smooth'}))}else set(i)})});
- addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',function(){cur=-1;mq.matches?onScroll():set(0)});
+ addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',function(){cur=-1;geo();mq.matches?onScroll():set(0)});
  mq.matches?onScroll():set(0);
 })();
 </script>
@@ -1426,10 +1429,13 @@ document.querySelectorAll('.band .run').forEach(function(r){
  document.querySelector('#footer .top').addEventListener('click',function(){glide(0)});
  /* закріплена шапка + активний пункт */
  var hero=document.querySelector('.hero'),ids=['for-whom','formats','turnkey','projects','lead'],links=[].slice.call(document.querySelectorAll('.nav a,.menu nav a'));
- function u(){var h=hero?hero.offsetHeight:600;document.body.classList.toggle('scrolled',scrollY>h-80);
-  var cur='';ids.forEach(function(id){var el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<innerHeight*.4)cur=id});
-  links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+cur)})}
- addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u();
+ var hh=600,tops=[],wasS=null,wasC=null;
+ function geo(){hh=hero?hero.offsetHeight:600;tops=ids.map(function(id){var el=document.getElementById(id);return el?el.getBoundingClientRect().top+scrollY:1e9})}
+ function u(){var y=scrollY,sc=y>hh-80;if(sc!==wasS){wasS=sc;document.body.classList.toggle('scrolled',sc)}
+  var cur='';tops.forEach(function(t,k){if(t-y<innerHeight*.4)cur=ids[k]});
+  if(cur!==wasC){wasC=cur;links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+cur)})}}
+ geo();if(window.ResizeObserver)new ResizeObserver(function(){geo();u()}).observe(document.body);
+ addEventListener('scroll',u,{passive:true});addEventListener('resize',function(){geo();u()});addEventListener('load',function(){geo();u()});u();
 })();
 </script>
 
@@ -1442,7 +1448,7 @@ document.querySelectorAll('.band .run').forEach(function(r){
  if(d.classList.contains('intro'))setTimeout(function(){d.classList.remove('intro')},3600);
 
  /* --- Lenis: плавна інерційна прокрутка колесом/тачпадом (на тач-екранах — нативна, так швидше) --- */
- if(motion&&window.Lenis){try{
+ if(window.Lenis&&!d.classList.contains('nolenis')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){try{
   var L=new Lenis({lerp:.095,smoothWheel:true,syncTouch:false,wheelMultiplier:1,autoRaf:true,anchors:false});window.__lenis=L;
   new MutationObserver(function(){document.body.classList.contains('menu-open')?L.stop():L.start()}).observe(document.body,{attributes:true,attributeFilter:['class']});
   $('textarea').forEach(function(t){t.setAttribute('data-lenis-prevent','')});
@@ -1455,15 +1461,20 @@ document.querySelectorAll('.band .run').forEach(function(r){
 
  /* --- пауза нескінченних анімацій поза екраном (економія GPU/батареї) --- */
  if('IntersectionObserver' in window){
-  var po=new IntersectionObserver(function(es){es.forEach(function(e){(e.target.__pz||e.target).classList.toggle('zz-off',!e.isIntersecting)})},{rootMargin:'200px 0px'});
-  $('body>section,#footer').forEach(function(s){po.observe(s)});
-  var rb=document.querySelector('.seam .ribbons');if(rb){rb.__pz=rb.parentNode;po.observe(rb)}
+  /* ставимо на паузу лише самі анімовані елементи (а не цілий блок — це викликало перерахунок стилів усього блоку на вході) */
+  var po=new IntersectionObserver(function(es){es.forEach(function(e){var st=e.isIntersecting?'':'paused';e.target.__anim.forEach(function(x){x.style.animationPlayState=st})})},{rootMargin:'200px 0px'});
+  [['.seam .ribbons','.seam .run'],['#turnkey','#turnkey .ripple'],['#price','#price .beam'],['#projects','#projects .live i'],['#lead','#lead .neon']].forEach(function(r){var t=document.querySelector(r[0]);if(!t)return;t.__anim=$(r[1]);po.observe(t)});
  }
 
- /* заздалегідь декодуємо фон «Форматів», поки користувач ще вгорі — без ривка при в'їзді блоку */
- (function(){var src=matchMedia('(max-width:1179px) and (orientation:portrait), (max-width:767px)').matches?'assets/formats-bg-m.webp':'assets/formats-bg.webp';
-  var go=function(){var im=new Image();im.decoding='async';im.src=src;if(im.decode)im.decode().catch(function(){});window.__fmtBg=im};
-  if(document.readyState==='complete')setTimeout(go,300);else addEventListener('load',function(){setTimeout(go,300)})})();
+ /* заздалегідь декодуємо великі фото блоків у фоні, по одному, поки користувач угорі.
+    Інакше браузер (особливо Safari) розпаковує фото в момент, коли блок з'являється, — це й давало ривок. */
+ (function(){var mob=matchMedia('(max-width:1179px) and (orientation:portrait), (max-width:767px)').matches;
+  var list=[mob?'assets/formats-bg-m.webp':'assets/formats-bg.webp',mob?'assets/chef-grill-v.webp':'assets/chef-grill-h.webp','assets/price-cloche.webp','assets/after-open.webp',
+   'assets/p-greystone.jpg','assets/p-gsp.jpg','assets/p-eatit.jpg','assets/p-redcat.jpg','assets/p-pub-inside.jpg','assets/faq-q.webp'];
+  window.__pre=[];var i=0,idle=window.requestIdleCallback||function(f){return setTimeout(f,200)};
+  function next(){if(i>=list.length)return;var im=new Image();im.decoding='async';im.src=list[i++];window.__pre.push(im);
+   (im.decode?im.decode():Promise.resolve()).catch(function(){}).then(function(){idle(next,{timeout:1500})})}
+  if(document.readyState==='complete')setTimeout(next,600);else addEventListener('load',function(){setTimeout(next,600)})})();
 
  var heroN=document.querySelector('.hero .plate.p-b .n');
  if(!motion||!('IntersectionObserver' in window)){initHang(false);return}
