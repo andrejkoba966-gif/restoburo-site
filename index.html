@@ -428,7 +428,7 @@ html,body{overflow-x:clip}
 #turnkey .st.on .body{grid-template-rows:1fr}
 #turnkey .st .fill{position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--red);transform-origin:0 50%;transform:scaleX(0)}
 #turnkey .st.on .fill{transform:scaleX(var(--f,0));will-change:transform}
-#turnkey .nav{display:none}
+#turnkey .tknav{display:none}
 
 /* ===== планшет і телефон: без прив'язки до скролу, вкладки + кнопки ===== */
 @media (max-width:1179px){
@@ -441,9 +441,9 @@ html,body{overflow-x:clip}
  #turnkey .meter{position:static;margin-bottom:.8rem}
  #turnkey .canvas{flex:none;height:24rem}
  #turnkey .steps{padding-left:0}
- #turnkey .nav{display:flex;gap:.6rem;justify-content:flex-end}
- #turnkey .nav button{width:3.4rem;height:3.4rem;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.04);color:#fff;font-size:1.2rem;cursor:pointer}
- #turnkey .nav button:disabled{opacity:.3}
+ #turnkey .tknav{display:flex;gap:.6rem;justify-content:flex-end}
+ #turnkey .tknav button{width:3.4rem;height:3.4rem;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.04);color:#fff;font-size:1.2rem;cursor:pointer}
+ #turnkey .tknav button:disabled{opacity:.3}
 }
 @media (max-width:767px){
  #turnkey .tkpin{padding:4.6rem 20px 4rem}
@@ -1160,7 +1160,7 @@ if(document.documentElement.classList.contains('intro')){var h=document.querySel
     </svg>
     </div>
    </div>
-   <div class="steps"><div class="st" data-i="0"><div class="row"><span class="n">1</span><h3>Аналіз і&nbsp;планування</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Бізнес-план</li><li>Попередній кошторис</li><li>Підбір приміщення</li><li>Аналіз локації</li><li>Цільова аудиторія</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="1"><div class="row"><span class="n">2</span><h3>Концепція та&nbsp;проєктування</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Концепція</li><li>Назва</li><li>Планування</li><li>Дизайн</li><li>Координація та контроль підрядників</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="2"><div class="row"><span class="n">3</span><h3>Обладнання та&nbsp;постачальники</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Підбір обладнання</li><li>Інвентар</li><li>Постачальники</li><li>Упаковка</li><li>Уніформа</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="3"><div class="row"><span class="n">4</span><h3>Меню та&nbsp;технологія кухні</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Розробка меню</li><li>Рецептури</li><li>Технологічні карти</li><li>Організація процесів кухні</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="4"><div class="row"><span class="n">5</span><h3>Команда й&nbsp;операційна підготовка</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Підбір персоналу</li><li>Навчання персоналу</li><li>Допомога з документами</li><li>Касове обладнання</li><li>Автоматизація</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="5"><div class="row"><span class="n">6</span><h3>Підготовка до&nbsp;відкриття</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Координація запуску</li><li>Просування перед відкриттям</li></ul></div></div><span class="fill"></span></div><div class="nav"><button class="pv" aria-label="Попередній етап">←</button><button class="nx" aria-label="Наступний етап">→</button></div></div>
+   <div class="steps"><div class="st" data-i="0"><div class="row"><span class="n">1</span><h3>Аналіз і&nbsp;планування</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Бізнес-план</li><li>Попередній кошторис</li><li>Підбір приміщення</li><li>Аналіз локації</li><li>Цільова аудиторія</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="1"><div class="row"><span class="n">2</span><h3>Концепція та&nbsp;проєктування</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Концепція</li><li>Назва</li><li>Планування</li><li>Дизайн</li><li>Координація та контроль підрядників</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="2"><div class="row"><span class="n">3</span><h3>Обладнання та&nbsp;постачальники</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Підбір обладнання</li><li>Інвентар</li><li>Постачальники</li><li>Упаковка</li><li>Уніформа</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="3"><div class="row"><span class="n">4</span><h3>Меню та&nbsp;технологія кухні</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Розробка меню</li><li>Рецептури</li><li>Технологічні карти</li><li>Організація процесів кухні</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="4"><div class="row"><span class="n">5</span><h3>Команда й&nbsp;операційна підготовка</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Підбір персоналу</li><li>Навчання персоналу</li><li>Допомога з документами</li><li>Касове обладнання</li><li>Автоматизація</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="5"><div class="row"><span class="n">6</span><h3>Підготовка до&nbsp;відкриття</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Координація запуску</li><li>Просування перед відкриттям</li></ul></div></div><span class="fill"></span></div><div class="tknav"><button class="pv" aria-label="Попередній етап">←</button><button class="nx" aria-label="Наступний етап">→</button></div></div>
   </div>
  </div>
 </section>
@@ -1447,6 +1447,11 @@ document.querySelectorAll('.band .run').forEach(function(r){
   var rb=document.querySelector('.seam .ribbons');if(rb){rb.__pz=rb.parentNode;po.observe(rb)}
  }
 
+ /* заздалегідь декодуємо фон «Форматів», поки користувач ще вгорі — без ривка при в'їзді блоку */
+ (function(){var src=matchMedia('(max-width:1179px) and (orientation:portrait), (max-width:767px)').matches?'assets/formats-bg-m.webp':'assets/formats-bg.webp';
+  var go=function(){var im=new Image();im.decoding='async';im.src=src;if(im.decode)im.decode().catch(function(){});window.__fmtBg=im};
+  if(document.readyState==='complete')setTimeout(go,300);else addEventListener('load',function(){setTimeout(go,300)})})();
+
  var heroN=document.querySelector('.hero .plate.p-b .n');
  if(!motion||!('IntersectionObserver' in window)){initHang(false);return}
  if(heroN)countUp(heroN,d.classList.contains('intro')?1400:0);
@@ -1465,7 +1470,7 @@ document.querySelectorAll('.band .run').forEach(function(r){
   tag($('a.cta',s).filter(function(a){return !a.closest('.side,.foot,.serve')}),'pop',.42);
  });
  if(matchMedia('(min-width:768px)').matches)tag($('#for-whom .card'),'card',.1,.12);
- tag($('#formats .s'),'pop',.15,.06);tag($('#turnkey .vis'),'pop',.15);tag($('#turnkey .st'),'s',.2,.07);
+ tag($('#formats .s'),'s',.12,.05);tag($('#turnkey .vis'),'pop',.15);tag($('#turnkey .st'),'s',.2,.07);
  tag($('#chef .facts li'),'s',.45,.08);tag($('#chef .nums>div'),'pop',.75,.12);
  var cn=document.querySelector('#chef .nums>div:nth-child(2) b');if(cn){var cw=cn.parentNode;cw.__onIn=function(){countUp(cn,850)}}
  tag($('#price .pmenu'),'s',.3);tag($('#price .note'),'s',.45);tag($('#price .serve'),'pop',.35);
