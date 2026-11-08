@@ -270,17 +270,17 @@ body.menu-open .menu nav a:nth-child(5){transition-delay:.2s}
  #for-whom .eyebrow{margin:0 0 12px;order:0;position:relative;z-index:1}
  #for-whom{overflow:clip}
  #for-whom .grid{display:block;padding-bottom:30px}
- #for-whom .card{position:sticky;top:calc(84px + var(--i) * 14px);margin-bottom:18px;min-height:232px;justify-content:flex-start;padding:26px 22px 28px;
+ #for-whom .card{position:sticky;top:calc(84px + var(--i) * 14px);margin-bottom:16px;min-height:0;justify-content:flex-start;padding:24px 22px 26px;
   background:linear-gradient(160deg,#2a2223,#161314);border-color:rgba(255,255,255,.16);
   transform-origin:50% 0;transform:scale(var(--s,1));transition:none;box-shadow:0 -14px 40px rgba(0,0,0,.55);will-change:transform}
  #for-whom .card:after{content:"";position:absolute;inset:-1px;border-radius:inherit;background:#050607;opacity:var(--o,0);pointer-events:none;z-index:3}
  #for-whom .card:hover{transform:scale(var(--s,1))}
- #for-whom .c1{min-height:0;justify-content:flex-start;padding:0;background:none!important;border:0;box-shadow:none}
- /* фото окремо, текст — на плашці в стилі інших карток, що наїжджає на фото */
- #for-whom .c1 .ph{position:relative;inset:auto;height:230px;border-radius:22px;background-size:cover;background-position:30% 62%;border:1px solid rgba(255,255,255,.12)}
+ /* перша картка: фото — шапка самої картки, текст під ним (варіант A — картки за висотою вмісту) */
+ #for-whom .c1{min-height:0;padding:0;overflow:hidden}
+ #for-whom .c1 .ph{position:relative;inset:auto;height:170px;background-size:cover;background-position:30% 60%}
  #for-whom .c1 .sh{display:none}
- #for-whom .c1 .tx{display:block;position:relative;z-index:1;margin:-58px 12px 0;padding:22px 20px 24px;border-radius:20px;
-  background:linear-gradient(160deg,#2a2223,#161314);border:1px solid rgba(255,255,255,.16);box-shadow:0 -10px 30px rgba(0,0,0,.45)}
+ #for-whom .c1 .tx{display:block;padding:20px 22px 24px}
+ #for-whom .c1 .tx h3{font-size:21px}#for-whom .c1 .tx p{font-size:15.5px}
  #for-whom .card:last-child{margin-bottom:0}
  #for-whom .head .cta{display:none}
  #for-whom .cta-end{display:inline-flex;margin-top:26px}
