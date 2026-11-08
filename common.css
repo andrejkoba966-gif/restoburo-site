@@ -1,0 +1,31 @@
+@font-face{font-family:Manrope;font-display:swap;font-weight:500;src:url(assets/manrope-500.woff2) format('woff2')}
+@font-face{font-family:Manrope;font-display:swap;font-weight:600;src:url(assets/manrope-600.woff2) format('woff2')}
+@font-face{font-family:Manrope;font-display:swap;font-weight:700;src:url(assets/manrope-700.woff2) format('woff2')}
+@font-face{font-family:Manrope;font-display:swap;font-weight:800;src:url(assets/manrope-800.woff2) format('woff2')}
+:root{--red:#e8291f;--red2:#ff4a3d;--ink:#0a0c0e;--text:#f1eeea;--mut:#c9c5c0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ink);font-family:Manrope,system-ui,sans-serif;color:var(--text);-webkit-font-smoothing:antialiased}
+.hero{position:relative;width:1440px;height:900px;overflow:hidden;background:var(--ink)}
+.abs{position:absolute}
+.logo{position:absolute;left:44px;top:20px;width:122px;z-index:20}
+.nav{position:absolute;left:50%;top:22px;transform:translateX(-50%);display:flex;gap:4px;padding:6px;border-radius:30px;background:rgba(22,26,29,.5);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(14px);z-index:20}
+.nav a{font-size:14px;font-weight:700;color:#e5e4e1;text-decoration:none;padding:0 19px;height:41px;display:flex;align-items:center;border-radius:22px}
+.nav a.on{background:rgba(232,41,31,.88);color:#fff}
+.desc{position:absolute;right:70px;top:30px;font-size:10.5px;font-weight:700;letter-spacing:.06em;line-height:1.5;color:#e8e6e3;z-index:20}
+.desc span{display:block;padding-left:28px}
+.eyebrow{display:flex;align-items:center;gap:14px;font-size:12px;font-weight:700;letter-spacing:.08em;color:#eae7e3}
+.eyebrow i{display:block;width:28px;height:2px;background:var(--red)}
+h1{font-weight:800;letter-spacing:-.025em}
+h1 em{font-style:normal;color:var(--red)}
+.p{font-size:16px;line-height:1.5;font-weight:500;color:#e7e4e0}
+.cta{display:inline-flex;align-items:center;gap:34px;height:61px;padding:0 7px 0 20px;border-radius:10px;background:#e32d27;border:1px solid rgba(255,255,255,.2);color:#fff;font-weight:700;font-size:13px;text-decoration:none;box-shadow:0 14px 40px rgba(232,41,31,.35)}
+.cta b{width:48px;height:47px;border-radius:7px;background:#fff;display:grid;place-items:center}
+.cta svg{width:22px;height:22px;stroke:#d62d27;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.glass{background:rgba(19,23,26,.62);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(12px);border-radius:10px}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);margin-right:10px;box-shadow:0 0 10px var(--red)}
+.grain{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 120%,rgba(232,41,31,.18),transparent 60%)}
+/* formats strip */
+.strip{position:absolute;left:0;right:0;bottom:0;height:76px;z-index:10;background:linear-gradient(180deg,rgba(11,12,14,.55),#0b0c0e 70%);border-top:1px solid rgba(255,255,255,.12);display:flex;align-items:center;gap:14px;padding:0 64px;font-size:14px;font-weight:700;letter-spacing:.02em;color:#d8d4cf;white-space:nowrap;overflow:hidden}
+.strip i{width:5px;height:5px;border-radius:50%;background:var(--red);display:block;flex:none;box-shadow:0 0 8px rgba(232,41,31,.8)}
+.strip .l{color:#8f8b86;flex:none}
+.strip .track{display:flex;align-items:center;gap:30px;flex:none}
