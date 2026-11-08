@@ -976,6 +976,20 @@ html,body{overflow-x:clip}
  #faq .cta{width:100%;justify-content:space-between}
 }
 
+
+/* ===================== Телефон: компактна закріплена кнопка замість кнопки в хиро ===================== */
+.fab{display:none}
+@media (max-width:767px){
+ .hero .descbox .cta2{display:none!important}
+ .fab{display:inline-flex;align-items:center;gap:12px;position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:26;
+  padding:6px 6px 6px 18px;border-radius:999px;background:#f6f3ef;color:#111315;text-decoration:none;font:800 13px/1.15 Manrope,sans-serif;text-transform:uppercase;
+  box-shadow:0 10px 28px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.08);transform:translateY(150%);opacity:0;pointer-events:none;
+  transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s}
+ .fab.on:not(.hide){transform:none;opacity:1;pointer-events:auto}
+ .fab i{flex:none;width:44px;height:44px;border-radius:50%;background:#111315;display:grid;place-items:center}
+ .fab svg{width:18px;height:18px;stroke:#fff;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+}
+
 /* ===================== АНІМАЦІЇ (лише transform/opacity — без конфліктів з наявними transform) =====================
    Використовуємо окремі властивості translate/scale/rotate: вони складаються з уже наявним transform елементів. */
 @keyframes rvUp{from{opacity:0;translate:0 1.6rem}to{opacity:1;translate:0 0}}
@@ -1417,8 +1431,9 @@ document.querySelectorAll('.band .run').forEach(function(r){
 <script>
 (function(){
  var bs=document.querySelectorAll('.burger'),m=document.getElementById('menu');
- function set(open){document.body.classList.toggle('menu-open',open);bs.forEach(function(b){b.setAttribute('aria-expanded',open)});m.setAttribute('aria-hidden',!open)}
- bs.forEach(function(b){b.addEventListener('click',function(){set(!document.body.classList.contains('menu-open'))})});
+ function set(open){document.body.classList.toggle('menu-open',open);document.querySelectorAll('.burger').forEach(function(b){b.setAttribute('aria-expanded',open)});m.setAttribute('aria-hidden',!open)}
+ /* делегування: працює і для бургера в закріпленій шапці, яка з'являється в розмітці пізніше */
+ document.addEventListener('click',function(e){if(e.target.closest('.burger'))set(!document.body.classList.contains('menu-open'))});
  window.__setMenu=set;
  m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){set(false)})});
  document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)});
@@ -1444,6 +1459,16 @@ document.querySelectorAll('.band .run').forEach(function(r){
  <a class="ml logolink2" href="index.html" aria-label="RESTOBURO — оновити сторінку"><img loading="lazy" decoding="async" src="assets/logo-light.webp" alt="RESTOBURO"></a>
  <div class="mr"><a class="pill" href="#lead">Обговорити проєкт <i><svg viewBox="0 0 24 24"><path d="M6 18 18 6M9 6h9v9"/></svg></i></a><button class="burger" aria-label="Меню" aria-expanded="false" aria-controls="menu"><span></span></button></div>
 </div>
+<a class="fab" href="#lead" aria-label="Обговорити свій проєкт">Обговорити<br>свій проєкт <i><svg viewBox="0 0 24 24"><path d="M6 18 18 6M9 6h9v9"/></svg></i></a>
+<script>
+/* закріплена кнопка (телефон): ховається, коли на екрані вже є інша кнопка заявки, форма або відкрите меню */
+(function(){var f=document.querySelector('.fab');if(!f||!('IntersectionObserver' in window))return;var vis=new Set();
+ function upd(){f.classList.toggle('hide',vis.size>0||document.body.classList.contains('menu-open'))}
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?vis.add(e.target):vis.delete(e.target)});upd()},{threshold:0});
+ [].forEach.call(document.querySelectorAll('a.cta,#lead form,#footer .fcta'),function(e){io.observe(e)});
+ new MutationObserver(upd).observe(document.body,{attributes:true,attributeFilter:['class']});
+ setTimeout(function(){f.classList.add('on')},1400)})();
+</script>
 <footer id="footer">
  <div class="fgrid">
   <div><a class="flogo logolink2" href="index.html" aria-label="RESTOBURO"><img loading="lazy" decoding="async" src="assets/logo-light.webp" alt="RESTOBURO"></a>
