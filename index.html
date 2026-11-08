@@ -3,7 +3,7 @@
 <link rel="preload" href="assets/manrope-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/manrope-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/restaurant.webp" as="image" fetchpriority="high">
-<script>(function(d){d.classList.add('js');var q=location.search;try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&q.indexOf('noanim')<0)d.classList.add('motion','intro')}catch(e){}if(q.indexOf('nolenis')>-1)d.classList.add('nolenis')})(document.documentElement)</script>
+<script>(function(d){d.classList.add('js');var q=location.search;try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&q.indexOf('noanim')<0)d.classList.add('motion','intro')}catch(e){}})(document.documentElement)</script>
 <style>
 /* 1rem = 14px на 1440×900; плавно росте на великих екранах (до 20px), не стискається на ноутбуках */
 html{font-size:clamp(14px,min(.9722vw,1.6vh),20px)}
@@ -940,11 +940,6 @@ html,body{overflow-x:clip}
 /* підписи блоків — стандартний міжлітерний інтервал */
 .eyebrow,#formats .eyebrow,#for-whom .eyebrow,#turnkey .eyebrow,#chef .eyebrow,#price .eyebrow,#after .eyebrow,#projects .eyebrow{letter-spacing:.02em!important}
 
-/* ===================== LENIS ===================== */
-html.lenis,html.lenis body{height:auto}
-.lenis:not(.lenis-autoToggle).lenis-stopped{overflow:clip}
-.lenis [data-lenis-prevent]{overscroll-behavior:contain}
-.lenis.lenis-smooth iframe{pointer-events:none}
 
 /* ===================== АНІМАЦІЇ (лише transform/opacity — без конфліктів з наявними transform) =====================
    Використовуємо окремі властивості translate/scale/rotate: вони складаються з уже наявним transform елементів. */
@@ -1421,7 +1416,7 @@ document.querySelectorAll('.band .run').forEach(function(r){
  /* плавний скрол до блоку */
  var tm;function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2}
  function stop(){clearInterval(tm);tm=null}
- function glide(y){if(window.__lenis){window.__lenis.scrollTo(y,{duration:Math.min(1.8,Math.max(.9,Math.abs(y-scrollY)*.00032)),easing:ease,force:true});return}stop();var s=scrollY,d=y-s,dur=Math.min(1500,Math.max(650,Math.abs(d)*.35)),t0=Date.now();
+ function glide(y){stop();var s=scrollY,d=y-s,dur=Math.min(1500,Math.max(650,Math.abs(d)*.35)),t0=Date.now();
   tm=setInterval(function(){var k=Math.min(1,(Date.now()-t0)/dur);scrollTo(0,s+d*ease(k));if(k>=1)stop()},16)}
  window.__glide=glide;
  function off(){return matchMedia('(max-width:1179px)').matches?66:0}
@@ -1441,20 +1436,12 @@ document.querySelectorAll('.band .run').forEach(function(r){
 })();
 </script>
 
-<script src="assets/lenis.min.js"></script>
 <script>
 (function(){
  var d=document.documentElement,motion=d.classList.contains('motion'),$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
 
  /* --- поява хиро: після завершення знімаємо клас --- */
  if(d.classList.contains('intro'))setTimeout(function(){d.classList.remove('intro')},3600);
-
- /* --- Lenis: плавна інерційна прокрутка колесом/тачпадом (на тач-екранах — нативна, так швидше) --- */
- if(window.Lenis&&!d.classList.contains('nolenis')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){try{
-  var L=new Lenis({lerp:.095,smoothWheel:true,syncTouch:false,wheelMultiplier:1,autoRaf:true,anchors:false});window.__lenis=L;
-  new MutationObserver(function(){document.body.classList.contains('menu-open')?L.stop():L.start()}).observe(document.body,{attributes:true,attributeFilter:['class']});
-  $('textarea').forEach(function(t){t.setAttribute('data-lenis-prevent','')});
- }catch(e){window.__lenis=null}}
 
  /* --- лічильник чисел --- */
  function countUp(el,delay){var tn=null;(function f(n){for(var i=0;i<n.childNodes.length&&!tn;i++){var c=n.childNodes[i];if(c.nodeType===3&&/\d/.test(c.textContent))tn=c;else if(c.nodeType===1)f(c)}})(el);if(!tn)return;
