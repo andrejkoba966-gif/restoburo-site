@@ -1378,13 +1378,20 @@ var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){s.classList.
 
 <section id="lead"><div class="wrap"><div><h2>Плануєте відкрити<br>або <em>оновити заклад?</em></h2><p class="lead">Розкажіть про вашу ідею, приміщення або діючий бізнес. Обговоримо формат співпраці, попередній бюджет і&nbsp;наступні кроки.</p><div class="promise"><div><b>1,5–3 міс.</b><span>орієнтовний запуск</span></div><div><b>1 місяць</b><span>супровід після відкриття</span></div></div></div><div style="padding-top:3rem"><span class="neon">ВІДКРИТО<small>ДЛЯ ВАШОГО ПРОЄКТУ</small></span><form><h3>Отримати консультацію</h3><label class="f"><small>Ваше ім'я</small><input required placeholder="Як до вас звертатися"></label><label class="f"><small>Телефон або зручний месенджер</small><input required class="tel" inputmode="tel" autocomplete="tel" placeholder="+380 (__) ___-__-__ або @telegram"></label><div class="f"><small>Що вас цікавить?</small><div class="opts"><label><input type="radio" name="t" checked><span>Відкриття під ключ</span></label><label><input type="radio" name="t"><span>Перезапуск</span></label><label><input type="radio" name="t"><span>Окрема послуга</span></label></div></div><label class="f"><small>Короткий коментар (необов'язково)</small><textarea placeholder="Формат, площа, місто — що вже є"></textarea></label><button class="send" type="submit">Отримати консультацію <i><svg viewBox="0 0 24 24"><path d="M6 18 18 6M9 6h9v9"/></svg></i></button><p class="fine">Форма-макет: відправка підключиться після отримання контактів.</p><div class="done"><b>Дякуємо!</b><p>Ми зв'яжемося з&nbsp;вами найближчим часом.</p></div></form></div></div></section><script>document.querySelector("#lead form").addEventListener("submit",function(e){e.preventDefault();this.classList.add("ok")})</script><script>
 (function(){var i=document.querySelector('#lead .tel');if(!i)return;
-function fmt(d){d=d.replace(/\D/g,'');if(d.indexOf('380')===0)d=d.slice(3);else if(d[0]==='0')d=d.slice(1);d=d.slice(0,9);
- var r='+380';if(d.length)r+=' ('+d.slice(0,2);if(d.length>=2)r+=')';if(d.length>2)r+=' '+d.slice(2,5);if(d.length>5)r+='-'+d.slice(5,7);if(d.length>7)r+='-'+d.slice(7,9);return r}
-i.addEventListener('input',function(){var v=i.value;if(/^[@a-zA-Z]/.test(v.trim())){i.setCustomValidity('');return}
- if(!/\d/.test(v)){i.value=v.replace(/[^+@]/g,'');return}i.value=fmt(v);
- i.setCustomValidity(i.value.replace(/\D/g,'').length===12?'':'Введіть номер повністю: +380 (XX) XXX-XX-XX')});
-i.addEventListener('focus',function(){if(!i.value)i.value=''});
-i.addEventListener('blur',function(){if(i.value==='+380')i.value=''});
+/* маска +380 (XX) XXX-XX-XX: символи оформлення додаються лише перед наступною цифрою, тож стирання не «застрягає» */
+function fmt(d){var r='+380 ('+d.slice(0,2);if(d.length>2)r+=') '+d.slice(2,5);if(d.length>5)r+='-'+d.slice(5,7);if(d.length>7)r+='-'+d.slice(7,9);return r}
+var lastN='';
+i.addEventListener('input',function(e){var v=i.value;
+ if(/^[@a-zA-Z]/.test(v.trim())){i.setCustomValidity('');lastN='';return}
+ var del=!!(e.inputType&&e.inputType.indexOf('delete')===0),raw=v.replace(/\D/g,'');
+ /* ще вводиться/стирається сам префікс країни: +, +3, +38, +380 */
+ if(!raw||'380'.indexOf(raw)===0&&!/\(/.test(v)){i.value=raw?'+'+raw:(del||!/\+/.test(v)?'':'+');lastN='';i.setCustomValidity('');return}
+ var n=raw.indexOf('380')===0?raw.slice(3):raw[0]==='0'?raw.slice(1):raw;
+ if(del&&n===lastN)n=n.slice(0,-1); /* стерли дужку/дефіс/пробіл — прибираємо й цифру перед ним */
+ n=n.slice(0,9);lastN=n;
+ i.value=n.length?fmt(n):(del?'+380':'+380 (');
+ i.setCustomValidity(n.length===9?'':'Введіть номер повністю: +380 (XX) XXX-XX-XX')});
+i.addEventListener('blur',function(){if(/^\+?3?8?0?\s?\(?$/.test(i.value)){i.value='';lastN='';i.setCustomValidity('')}});
 })();
 </script>
 
