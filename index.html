@@ -451,7 +451,7 @@ html,body{overflow-x:clip}
  #turnkey .canvas{flex:none;height:24rem}
  #turnkey .steps{padding-left:0}
  #turnkey .top .cta{display:none}
- #turnkey .cta-end{display:inline-flex;margin-top:1.8rem}
+ #turnkey .cta-end{display:inline-flex;margin-top:1.8rem;align-self:flex-start}
  /* сцена «прилипає» під шапкою, поки гортаєш етапи — результат натискання завжди видно */
  #turnkey .vis{position:sticky;top:74px;z-index:4;margin:0 -40px;padding:10px 40px 14px;background:#0a0c0e;box-shadow:0 14px 18px -6px #0a0c0e}
 }
@@ -711,6 +711,8 @@ html,body{overflow-x:clip}
  #price .it .dots{display:none}
  #price .it b{font-size:22px}
  #price .it span{font-size:15px;color:rgba(255,255,255,.75)}
+ #price .it>span{display:flex;flex-direction:column;align-items:flex-end;line-height:1.2}
+ #price .it>span:before{content:"Вартість послуг";font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:4px}
  #price .it .inv,#price .it.on .inv{grid-column:1 / -1;display:block;margin-top:2px;font-size:15px;font-weight:800;color:#ff6a5c}
  #price .mcta{display:flex;width:100%;justify-content:space-between;margin-top:18px}
 }
@@ -771,7 +773,8 @@ html,body{overflow-x:clip}
  #projects .p .cap p{max-height:6rem;opacity:1}
 }
 @media (max-width:767px){
- #projects{padding:4.6rem 20px}
+ #projects{padding:2.8rem 20px 4.6rem}
+ #after{padding-bottom:2.4rem}
  #projects .eyebrow{font-size:11px;letter-spacing:.16em;margin-bottom:12px}
  #projects h2{font-size:32px}
  #projects .lead{font-size:16px}
