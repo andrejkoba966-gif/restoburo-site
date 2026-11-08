@@ -428,7 +428,7 @@ html,body{overflow-x:clip}
 #turnkey .st.on .body{grid-template-rows:1fr}
 #turnkey .st .fill{position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--red);transform-origin:0 50%;transform:scaleX(0)}
 #turnkey .st.on .fill{transform:scaleX(var(--f,0));will-change:transform}
-#turnkey .tknav{display:none}
+#turnkey .cta-end{display:none}
 
 /* ===== планшет і телефон: без прив'язки до скролу, вкладки + кнопки ===== */
 @media (max-width:1179px){
@@ -441,9 +441,8 @@ html,body{overflow-x:clip}
  #turnkey .meter{position:static;margin-bottom:.8rem}
  #turnkey .canvas{flex:none;height:24rem}
  #turnkey .steps{padding-left:0}
- #turnkey .tknav{display:flex;gap:.6rem;justify-content:flex-end}
- #turnkey .tknav button{width:3.4rem;height:3.4rem;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.04);color:#fff;font-size:1.2rem;cursor:pointer}
- #turnkey .tknav button:disabled{opacity:.3}
+ #turnkey .top .cta{display:none}
+ #turnkey .cta-end{display:inline-flex;margin-top:1.8rem}
 }
 @media (max-width:767px){
  #turnkey .tkpin{padding:4.6rem 20px 4rem}
@@ -1160,7 +1159,7 @@ if(document.documentElement.classList.contains('intro')){var h=document.querySel
     </svg>
     </div>
    </div>
-   <div class="steps"><div class="st" data-i="0"><div class="row"><span class="n">1</span><h3>Аналіз і&nbsp;планування</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Бізнес-план</li><li>Попередній кошторис</li><li>Підбір приміщення</li><li>Аналіз локації</li><li>Цільова аудиторія</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="1"><div class="row"><span class="n">2</span><h3>Концепція та&nbsp;проєктування</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Концепція</li><li>Назва</li><li>Планування</li><li>Дизайн</li><li>Координація та контроль підрядників</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="2"><div class="row"><span class="n">3</span><h3>Обладнання та&nbsp;постачальники</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Підбір обладнання</li><li>Інвентар</li><li>Постачальники</li><li>Упаковка</li><li>Уніформа</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="3"><div class="row"><span class="n">4</span><h3>Меню та&nbsp;технологія кухні</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Розробка меню</li><li>Рецептури</li><li>Технологічні карти</li><li>Організація процесів кухні</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="4"><div class="row"><span class="n">5</span><h3>Команда й&nbsp;операційна підготовка</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Підбір персоналу</li><li>Навчання персоналу</li><li>Допомога з документами</li><li>Касове обладнання</li><li>Автоматизація</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="5"><div class="row"><span class="n">6</span><h3>Підготовка до&nbsp;відкриття</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Координація запуску</li><li>Просування перед відкриттям</li></ul></div></div><span class="fill"></span></div><div class="tknav"><button class="pv" aria-label="Попередній етап">←</button><button class="nx" aria-label="Наступний етап">→</button></div></div>
+   <div class="steps"><div class="st" data-i="0"><div class="row"><span class="n">1</span><h3>Аналіз і&nbsp;планування</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Бізнес-план</li><li>Попередній кошторис</li><li>Підбір приміщення</li><li>Аналіз локації</li><li>Цільова аудиторія</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="1"><div class="row"><span class="n">2</span><h3>Концепція та&nbsp;проєктування</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Концепція</li><li>Назва</li><li>Планування</li><li>Дизайн</li><li>Координація та контроль підрядників</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="2"><div class="row"><span class="n">3</span><h3>Обладнання та&nbsp;постачальники</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Підбір обладнання</li><li>Інвентар</li><li>Постачальники</li><li>Упаковка</li><li>Уніформа</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="3"><div class="row"><span class="n">4</span><h3>Меню та&nbsp;технологія кухні</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Розробка меню</li><li>Рецептури</li><li>Технологічні карти</li><li>Організація процесів кухні</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="4"><div class="row"><span class="n">5</span><h3>Команда й&nbsp;операційна підготовка</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Підбір персоналу</li><li>Навчання персоналу</li><li>Допомога з документами</li><li>Касове обладнання</li><li>Автоматизація</li></ul></div></div><span class="fill"></span></div><div class="st" data-i="5"><div class="row"><span class="n">6</span><h3>Підготовка до&nbsp;відкриття</h3><span class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="body"><div><ul><li>Координація запуску</li><li>Просування перед відкриттям</li></ul></div></div><span class="fill"></span></div><a class="cta cta-end" href="#lead">Обговорити відкриття під ключ <i><svg viewBox="0 0 24 24"><path d="M6 18 18 6M9 6h9v9"/></svg></i></a></div>
   </div>
  </div>
 </section>
@@ -1170,13 +1169,10 @@ if(document.documentElement.classList.contains('intro')){var h=document.querySel
   st=[].slice.call(root.querySelectorAll('.st')),N=st.length,names=['АНАЛІЗ','КОНЦЕПЦІЯ','ОБЛАДНАННЯ','МЕНЮ','КОМАНДА','ВІДКРИТТЯ'],mq=matchMedia('(min-width:1180px)'),cur=-1,shown=0,tm,auto=null;
  function count(to){clearInterval(tm);var from=shown,k=0;tm=setInterval(function(){k=Math.min(1,k+1/18);shown=Math.round(from+(to-from)*(1-Math.pow(1-k,3)));pct.textContent=shown;if(k>=1)clearInterval(tm)},30)}
  function set(i){if(i===cur)return;cur=i;var c='canvas in';for(var k=1;k<=i+1;k++)c+=' s'+k;cv.setAttribute('class',c);
-  st.forEach(function(e,k){e.classList.toggle('on',k===i);e.classList.toggle('done',k<i)});count(Math.round((i+1)/N*100));nm.textContent=names[i];
-  root.querySelector('.pv').disabled=i===0;root.querySelector('.nx').disabled=i===N-1}
+  st.forEach(function(e,k){e.classList.toggle('on',k===i);e.classList.toggle('done',k<i)});count(Math.round((i+1)/N*100));nm.textContent=names[i];}
  function scrollPos(){var r=root.getBoundingClientRect(),tot=root.offsetHeight-innerHeight;return Math.min(.9999,Math.max(0,-r.top/tot))}
  function onScroll(){if(!mq.matches)return;var p=scrollPos()*N,i=Math.floor(p);set(i);st[i].style.setProperty('--f',(p-i).toFixed(4))}
  st.forEach(function(e,i){e.addEventListener('click',function(){if(mq.matches){var tot=root.offsetHeight-innerHeight,y=root.getBoundingClientRect().top+scrollY+tot*(i+.02)/N;(window.__glide?window.__glide(y):scrollTo({top:y,behavior:'smooth'}))}else set(i)})});
- root.querySelector('.pv').addEventListener('click',function(){set(Math.max(0,cur-1))});
- root.querySelector('.nx').addEventListener('click',function(){set(Math.min(N-1,cur+1))});
  addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',function(){cur=-1;mq.matches?onScroll():set(0)});
  mq.matches?onScroll():set(0);
 })();
