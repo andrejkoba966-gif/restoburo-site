@@ -981,12 +981,12 @@ html,body{overflow-x:clip}
 .fab{display:none}
 @media (max-width:767px){
  .hero .descbox .cta2{display:none!important}
- .fab{display:inline-flex;align-items:center;gap:12px;position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:26;
-  padding:6px 6px 6px 18px;border-radius:999px;background:#f6f3ef;color:#111315;text-decoration:none;font:800 13px/1.15 Manrope,sans-serif;text-transform:uppercase;
-  box-shadow:0 10px 28px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.08);transform:translateY(150%);opacity:0;pointer-events:none;
+ .fab{display:inline-flex;align-items:center;gap:10px;position:fixed;left:0;right:0;margin:0 auto;width:max-content;max-width:calc(100% - 28px);bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:26;
+  padding:5px 5px 5px 20px;border-radius:999px;background:#111315;color:#fff;text-decoration:none;font:800 13px/1.15 Manrope,sans-serif;letter-spacing:.02em;text-transform:uppercase;white-space:nowrap;
+  box-shadow:0 10px 28px rgba(0,0,0,.6),0 0 0 1.5px #e8291f;transform:translateY(150%);opacity:0;pointer-events:none;
   transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .3s}
  .fab.on:not(.hide){transform:none;opacity:1;pointer-events:auto}
- .fab i{flex:none;width:44px;height:44px;border-radius:50%;background:#111315;display:grid;place-items:center}
+ .fab i{flex:none;width:38px;height:38px;border-radius:50%;background:#e8291f;display:grid;place-items:center}
  .fab svg{width:18px;height:18px;stroke:#fff;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
 }
 
@@ -1489,7 +1489,7 @@ document.querySelectorAll('.band .run').forEach(function(r){
  <a class="ml logolink2" href="index.html" aria-label="RESTOBURO — оновити сторінку"><img loading="lazy" decoding="async" src="assets/logo-light.webp" alt="RESTOBURO"></a>
  <div class="mr"><a class="pill" href="#lead">Обговорити проєкт <i><svg viewBox="0 0 24 24"><path d="M6 18 18 6M9 6h9v9"/></svg></i></a><button class="burger" aria-label="Меню" aria-expanded="false" aria-controls="menu"><span></span></button></div>
 </div>
-<a class="fab" href="#lead" aria-label="Обговорити свій проєкт">Обговорити<br>свій проєкт <i><svg viewBox="0 0 24 24"><path d="M6 18 18 6M9 6h9v9"/></svg></i></a>
+<a class="fab" href="#lead" aria-label="Обговорити свій проєкт">Обговорити проєкт <i><svg viewBox="0 0 24 24"><path d="M6 18 18 6M9 6h9v9"/></svg></i></a>
 <script>
 /* закріплена кнопка (телефон): показуємо лише в блоках, де немає власної кнопки заявки чи форми.
    Рішення — за блоком у центрі екрана, тож кнопка змінюється тільки на межі блоків, без мерехтіння */
@@ -1497,12 +1497,12 @@ document.querySelectorAll('.band .run').forEach(function(r){
  function own(sec){return [].some.call(sec.querySelectorAll('a.cta,a.fcta,form'),function(e){return e.offsetParent!==null&&getComputedStyle(e).display!=='none'})}
  function geo(){secs=[].map.call(document.querySelectorAll('body>section,body>footer'),function(sec){var r=sec.getBoundingClientRect();return {top:r.top+scrollY,bot:r.bottom+scrollY,own:own(sec)}})}
  function upd(){tk=false;if(!mq.matches)return;var mid=scrollY+innerHeight*.5,s=null;for(var i=0;i<secs.length;i++)if(mid>=secs[i].top&&mid<secs[i].bot){s=secs[i];break}
-  var hide=(s?s.own:false)||document.body.classList.contains('menu-open');if(hide!==cur){cur=hide;f.classList.toggle('hide',hide)}}
+  f.classList.toggle('on',scrollY>80);var hide=(s?s.own:false)||document.body.classList.contains('menu-open');if(hide!==cur){cur=hide;f.classList.toggle('hide',hide)}}
  addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(upd)}},{passive:true});
  addEventListener('resize',function(){geo();upd()});addEventListener('load',function(){geo();upd()});
  if(window.ResizeObserver)new ResizeObserver(function(){geo();upd()}).observe(document.body);
  new MutationObserver(function(){cur=null;upd()}).observe(document.body,{attributes:true,attributeFilter:['class']});
- geo();upd();setTimeout(function(){f.classList.add('on')},1400)})();
+ geo();upd()})();
 </script>
 <footer id="footer">
  <div class="fgrid">
