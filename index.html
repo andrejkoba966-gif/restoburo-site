@@ -1495,7 +1495,7 @@ document.querySelectorAll('.band .run').forEach(function(r){
    Рішення — за блоком у центрі екрана, тож кнопка змінюється тільки на межі блоків, без мерехтіння */
 (function(){var f=document.querySelector('.fab');if(!f)return;var mq=matchMedia('(max-width:767px)'),secs=[],cur=null,tk=false;
  function own(sec){return [].some.call(sec.querySelectorAll('a.cta,a.fcta,form'),function(e){return e.offsetParent!==null&&getComputedStyle(e).display!=='none'})}
- function geo(){secs=[].map.call(document.querySelectorAll('body>section,body>footer'),function(sec){var r=sec.getBoundingClientRect();return {top:r.top+scrollY,bot:r.bottom+scrollY,own:own(sec)}})}
+ function geo(){secs=[].map.call(document.querySelectorAll('body>section,body>footer'),function(sec){var r=sec.getBoundingClientRect();return {top:r.top+scrollY,bot:r.bottom+scrollY,own:sec.id==='lead'||sec.tagName==='FOOTER'}})}
  function upd(){tk=false;if(!mq.matches)return;var mid=scrollY+innerHeight*.5,s=null;for(var i=0;i<secs.length;i++)if(mid>=secs[i].top&&mid<secs[i].bot){s=secs[i];break}
   f.classList.toggle('on',scrollY>80);var hide=(s?s.own:false)||document.body.classList.contains('menu-open');if(hide!==cur){cur=hide;f.classList.toggle('hide',hide)}}
  addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(upd)}},{passive:true});
