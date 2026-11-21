@@ -354,32 +354,51 @@ html,body{overflow-x:clip}
 @media (max-width:1179px){#formats{padding:6rem 40px 9rem}#formats .top{grid-template-columns:1fr;gap:1.6rem}#formats .top>div:last-child{padding-left:0}#formats .format-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:1179px) and (orientation:portrait){#formats{background-image:url(assets/formats-bg-m.webp);background-position:center bottom}}
 @media (max-width:767px){
- #formats{padding:4.2rem 20px 2.6rem;background:#0a0c0e}
+ #formats{
+  --mobile-format-photo:url(assets/formats-bg-mobile-clean.jpg);
+  padding:4.2rem 20px clamp(68px,19vw,108px);background:#140e0e
+ }
+ #formats:before,#formats:after{
+  position:absolute;z-index:-1;pointer-events:none;
+  background-image:var(--mobile-format-photo);background-repeat:no-repeat;
+  background-size:100% auto
+ }
  #formats:before{
-  inset:0 0 auto;height:clamp(310px,89vw,430px);
-  background:
-   linear-gradient(180deg,rgba(10,12,14,.33),transparent 32%,rgba(10,12,14,.78) 69%,#0a0c0e),
-   linear-gradient(90deg,rgba(10,12,14,.50),rgba(10,12,14,.12)),
-   url(assets/formats-bg-m.webp) center -38px / 100% auto no-repeat
+  inset:0 0 auto;height:clamp(226px,72vw,430px);
+  background-position:center -9.8vw;
+  mask-image:linear-gradient(#000 calc(100% - 20px),transparent)
+ }
+ #formats:after{
+  content:"";inset:auto 0 0;height:clamp(160px,48vw,260px);
+  background-position:center bottom;
+  mask-image:linear-gradient(transparent,#000 20px)
  }
  #formats .top{margin-bottom:26px;gap:0}
  #formats .eyebrow{font-size:11px;margin-bottom:12px}
  #formats h2{font-size:32px;margin-bottom:14px}
  #formats .lead{font-size:16px}
  #formats .top .cta{display:none}
- #formats .format-card{min-height:0}
- #formats .format-card h3{min-height:0}
- #formats .format-custom{grid-template-columns:auto 1fr;gap:.5rem .9rem}
- #formats .format-custom .format-icon{grid-row:1 / span 2}
- #formats .format-custom p{grid-column:2}
- #formats .cta-m{display:flex;width:max-content;margin:26px 0 0 auto;height:56px;font-size:14px;gap:14px;padding:0 6px 0 20px}
- #formats .cta-m{max-width:100%;white-space:normal}
- #formats .cta-m i{width:44px;height:44px}
-}
-@media (max-width:560px){
- #formats .format-grid{grid-template-columns:1fr}
- #formats .format-card{padding:1.15rem}
+ #formats .format-grid{grid-template-columns:1fr;gap:12px}
+ #formats .format-card{
+  display:grid;grid-template-columns:auto minmax(0,1fr);align-items:start;
+  gap:5px 12px;min-height:0;padding:14px;
+  background:linear-gradient(145deg,#252122,#151416)
+ }
+ #formats .format-card .format-icon{grid-row:1 / span 2;width:34px;height:34px}
+ #formats .format-card h3{min-height:0;margin:0;font-size:17px}
  #formats .format-card h3 br{display:none}
+ #formats .format-card p{
+  grid-column:2;margin:0;padding:0;border:0;font-size:14px;line-height:1.52
+ }
+ #formats .format-custom{grid-template-columns:auto minmax(0,1fr);gap:.35rem .85rem;padding:14px}
+ #formats .format-custom .format-icon{grid-row:1 / span 2;width:34px;height:34px}
+ #formats .format-custom h3{font-size:16px}
+ #formats .format-custom p{grid-column:2;font-size:14px;line-height:1.52}
+ #formats .cta-m{
+  display:flex;width:max-content;max-width:100%;margin:20px 0 0 auto;height:56px;
+  font-size:14px;gap:14px;padding:0 6px 0 20px;white-space:normal
+ }
+ #formats .cta-m i{width:44px;height:44px}
 }
 
 /* ===================== БЛОК 06 «ПІД КЛЮЧ» ===================== */
