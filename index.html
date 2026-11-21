@@ -356,7 +356,8 @@ html,body{overflow-x:clip}
 @media (max-width:767px){
  #formats{
   --mobile-format-photo:url(assets/formats-bg-mobile-clean.jpg);
-  padding:4.2rem 20px clamp(68px,19vw,108px);background:#140e0e
+  padding:4.2rem 20px clamp(68px,19vw,108px);
+  background:linear-gradient(180deg,#0a0c0e,#140e0e 88px,#140e0e calc(100% - 88px),#0a0c0e)
  }
  #formats:before,#formats:after{
   position:absolute;z-index:-1;pointer-events:none;
@@ -366,15 +367,15 @@ html,body{overflow-x:clip}
  #formats:before{
   inset:0 0 auto;height:clamp(226px,72vw,430px);
   background-position:center -9.8vw;
-  mask-image:linear-gradient(#000 calc(100% - 20px),transparent)
+  mask-image:linear-gradient(transparent,#000 46px,#000 calc(100% - 64px),transparent)
  }
  #formats:after{
   content:"";inset:auto 0 0;height:clamp(160px,48vw,260px);
   background-position:center bottom;
-  mask-image:linear-gradient(transparent,#000 20px)
+  mask-image:linear-gradient(transparent,#000 52px,#000 calc(100% - 28px),transparent)
  }
  #formats .top{margin-bottom:26px;gap:0}
- #formats .eyebrow{font-size:11px;margin-bottom:12px}
+ #formats .eyebrow{font-size:11px;margin:0 0 12px}
  #formats h2{font-size:32px;margin-bottom:14px}
  #formats .lead{font-size:16px}
  #formats .top .cta{display:none}
@@ -399,6 +400,7 @@ html,body{overflow-x:clip}
   font-size:14px;gap:14px;padding:0 6px 0 20px;white-space:normal
  }
  #formats .cta-m i{width:44px;height:44px}
+ #formats + #turnkey{border-top-color:transparent}
 }
 
 /* ===================== БЛОК 06 «ПІД КЛЮЧ» ===================== */
