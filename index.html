@@ -354,8 +354,14 @@ html,body{overflow-x:clip}
 @media (max-width:1179px){#formats{padding:6rem 40px 9rem}#formats .top{grid-template-columns:1fr;gap:1.6rem}#formats .top>div:last-child{padding-left:0}#formats .format-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:1179px) and (orientation:portrait){#formats{background-image:url(assets/formats-bg-m.webp);background-position:center bottom}}
 @media (max-width:767px){
- #formats{padding:4.2rem 20px 2.6rem;background-position:30% bottom}
- #formats:before{background:linear-gradient(180deg,#0a0c0e 0%,rgba(10,12,14,0) 10%,rgba(10,12,14,0) 92%,#0a0c0e 100%)}
+ #formats{padding:4.2rem 20px 2.6rem;background:#0a0c0e}
+ #formats:before{
+  inset:0 0 auto;height:clamp(310px,89vw,430px);
+  background:
+   linear-gradient(180deg,rgba(10,12,14,.33),transparent 32%,rgba(10,12,14,.78) 69%,#0a0c0e),
+   linear-gradient(90deg,rgba(10,12,14,.50),rgba(10,12,14,.12)),
+   url(assets/formats-bg-m.webp) center -38px / 100% auto no-repeat
+ }
  #formats .top{margin-bottom:26px;gap:0}
  #formats .eyebrow{font-size:11px;margin-bottom:12px}
  #formats h2{font-size:32px;margin-bottom:14px}
