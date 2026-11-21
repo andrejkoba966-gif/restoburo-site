@@ -304,7 +304,7 @@ html,body{overflow-x:clip}
 
 
 
-/* ===================== БЛОК «ФОРМАТИ»: стіна вивісок ===================== */
+/* ===================== БЛОК «ФОРМАТИ»: картки закладів ===================== */
 #formats{--red:#e8291f;position:relative;isolation:isolate;padding:7.5rem max(84px,5.8vw) 11rem;color:#f1eeea;background:#0a0c0e url(assets/formats-bg.webp) center 70%/cover no-repeat}
 #formats:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,#0a0c0e 0%,rgba(10,12,14,0) 14%,rgba(10,12,14,0) 86%,#0a0c0e 100%)}
 #formats .top{display:grid;grid-template-columns:1.25fr 2fr;column-gap:1.15rem;align-items:start;margin-bottom:3.4rem}
@@ -318,22 +318,40 @@ html,body{overflow-x:clip}
 #formats .cta svg{width:1.2rem;height:1.2rem;stroke:#fff;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round;transition:transform .35s}
 #formats .cta:hover{background:#fff;transform:translateY(-2px)}#formats .cta:hover i{background:var(--red)}#formats .cta:hover svg{transform:rotate(45deg)}
 #formats .cta-m{display:none}
-#formats .wall{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;align-content:center;gap:2.2rem 1.6rem;min-height:23rem;padding:3.4rem 3rem;border-radius:1.8rem;
- background:linear-gradient(180deg,rgba(20,10,10,.55),rgba(12,8,8,.62));border:1px solid rgba(255,74,61,.38);box-shadow:0 0 2.4rem rgba(232,41,31,.14),inset 0 0 3rem rgba(232,41,31,.06)}
-#formats .s{display:inline-flex;align-items:center;gap:.85rem;padding:.95rem 1.5rem;border-radius:.7rem;font-weight:800;font-size:1.3rem;line-height:1.15;white-space:nowrap}
-#formats .s .ic{flex:none;width:1.9rem;height:1.9rem;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-#formats .s.k-neon{border:2px solid #ff4a3d;color:#fff3f0;background:rgba(20,4,4,.55);text-shadow:0 0 6px #ff4a3d,0 0 16px #ff4a3d;box-shadow:0 0 10px rgba(255,74,61,.8),0 0 26px rgba(255,74,61,.35),inset 0 0 10px rgba(255,74,61,.35)}
-#formats .s.k-neon .ic{color:#ff8a7f}
-#formats .s.k-plate{background:#f1e9df;color:#1b1414;border-radius:999px;box-shadow:0 .6rem 1.4rem rgba(0,0,0,.5),inset 0 0 0 3px #1b1414,inset 0 0 0 5px #f1e9df,inset 0 0 0 6px #e8291f}
-#formats .s.k-plate .ic{color:#e8291f}
-#formats .s.k-board{background:#0f0f11;border:1px solid rgba(255,255,255,.16);color:#ffe7d6;text-shadow:0 0 8px rgba(255,170,120,.5);box-shadow:0 .6rem 1.4rem rgba(0,0,0,.5)}
-#formats .s.k-board .ic{color:#ffb98a}
-#formats .s.k-gold{background:linear-gradient(180deg,#1b1511,#0d0a08);border:2px solid #c9a46a;color:#e9cf9c;text-transform:uppercase;font-size:1.02rem;letter-spacing:.06em}
-#formats .s.k-gold .ic{color:#c9a46a}
-#formats .duo{display:contents}
-#formats .wall>.s:nth-child(odd),#formats .duo>.s:first-child{rotate:-1.5deg}#formats .wall>.s:nth-child(3n),#formats .duo>.s:last-child{rotate:1.2deg}
-#formats .s.x{font-size:1.55rem;padding:1.2rem 2rem}
-@media (max-width:1179px){#formats{padding:6rem 40px 9rem}#formats .top{grid-template-columns:1fr;gap:1.6rem}#formats .top>div:last-child{padding-left:0}#formats .wall{padding:2.6rem 1.6rem}}
+#formats .format-grid{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.86rem;
+ list-style:none;margin:0;padding:0
+}
+#formats .format-card,#formats .format-custom{
+ border:1px solid rgba(245,226,219,.15);border-radius:1.3rem;
+ background:linear-gradient(38deg,transparent 38%,rgba(103,40,34,.28)),
+            linear-gradient(180deg,rgba(38,36,37,.95),rgba(18,18,20,.96))
+}
+#formats .format-card{padding:1.3rem;min-height:18.7rem}
+#formats .format-icon{
+ display:grid;place-items:center;flex:none;width:2.6rem;height:2.6rem;border-radius:.65rem;
+ background:rgba(232,41,31,.12);border:1px solid rgba(232,41,31,.32);color:#ff7669
+}
+#formats .format-icon svg{
+ width:1.45rem;height:1.45rem;fill:none;stroke:currentColor;stroke-width:3;
+ stroke-linecap:round;stroke-linejoin:round
+}
+#formats .format-card h3,#formats .format-custom h3{
+ margin:0;font-size:1.4rem;font-weight:800;line-height:1.2;letter-spacing:-.018em
+}
+#formats .format-card h3{min-height:2.4em;margin-top:1.1rem}
+#formats .format-card p,#formats .format-custom p{
+ margin:0;color:#e7e4e0;font-size:1.08rem;font-weight:500;line-height:1.58
+}
+#formats .format-card p{
+ margin-top:.6rem;padding-top:1rem;border-top:1px solid rgba(255,231,221,.14)
+}
+#formats .format-custom{
+ display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,1.65fr);align-items:center;
+ gap:1.05rem;margin-top:.86rem;padding:1.1rem 1.4rem
+}
+#formats .format-custom .format-icon{width:2.9rem;height:2.9rem}
+@media (max-width:1179px){#formats{padding:6rem 40px 9rem}#formats .top{grid-template-columns:1fr;gap:1.6rem}#formats .top>div:last-child{padding-left:0}#formats .format-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:1179px) and (orientation:portrait){#formats{background-image:url(assets/formats-bg-m.webp);background-position:center bottom}}
 @media (max-width:767px){
  #formats{padding:4.2rem 20px 2.6rem;background-position:30% bottom}
@@ -343,15 +361,19 @@ html,body{overflow-x:clip}
  #formats h2{font-size:32px;margin-bottom:14px}
  #formats .lead{font-size:16px}
  #formats .top .cta{display:none}
- #formats .wall{display:flex;flex-direction:column;align-items:center;gap:14px;min-height:0;padding:24px 12px;border-radius:22px}
- #formats .duo{display:flex;justify-content:center;gap:8px;max-width:100%}
-  #formats .s{font-size:16px;padding:11px 18px;gap:10px;rotate:none!important}
- #formats .duo .s{font-size:14px;padding:9px 12px;gap:8px}#formats .duo .s .ic{width:18px;height:18px}
- #formats .s .ic{width:22px;height:22px}
- #formats .s.k-gold{font-size:13px}
- #formats .s.x{font-size:18px;padding:13px 22px}
+ #formats .format-card{min-height:0}
+ #formats .format-card h3{min-height:0}
+ #formats .format-custom{grid-template-columns:auto 1fr;gap:.5rem .9rem}
+ #formats .format-custom .format-icon{grid-row:1 / span 2}
+ #formats .format-custom p{grid-column:2}
  #formats .cta-m{display:flex;width:max-content;margin:26px 0 0 auto;height:56px;font-size:14px;gap:14px;padding:0 6px 0 20px}
+ #formats .cta-m{max-width:100%;white-space:normal}
  #formats .cta-m i{width:44px;height:44px}
+}
+@media (max-width:560px){
+ #formats .format-grid{grid-template-columns:1fr}
+ #formats .format-card{padding:1.15rem}
+ #formats .format-card h3 br{display:none}
 }
 
 /* ===================== БЛОК 06 «ПІД КЛЮЧ» ===================== */
@@ -1153,7 +1175,33 @@ if(document.documentElement.classList.contains('intro')){var h=document.querySel
 
 <section id="formats">
  <div class="top"><div><div class="eyebrow">ФОРМАТИ</div><h2>Які заклади<br>ми <em>відкриваємо?</em></h2></div><div><p class="lead">Працюємо з&nbsp;різними форматами — від невеликих точок швидкого харчування до&nbsp;кафе та&nbsp;ресторанів. Формат підбираємо відповідно до&nbsp;приміщення, бюджету та&nbsp;цільової аудиторії.</p><a class="cta" href="#lead">Обговорити формат закладу <i><svg viewBox="0 0 24 24"><path d="M6 18 18 6M9 6h9v9"/></svg></i></a></div></div>
- <ul class="wall"><li class="s k-neon"><svg class="ic" aria-hidden="true" viewBox="0 0 64 64"><path d="M10 28Q10 10 32 10Q54 10 54 28Z"/><path d="M8 35q4-5 8 0t8 0 8 0 8 0 8 0 8 0"/><rect x="10" y="39" width="44" height="7" rx="3.5"/><path d="M10 50h44q0 9-9 9H19q-9 0-9-9Z"/><path d="M24 17h.01M34 15h.01M42 19h.01"/></svg><span>Бургерні</span></li><li class="s k-neon"><svg class="ic" aria-hidden="true" viewBox="0 0 64 64"><rect x="4" y="20" width="40" height="24" rx="3"/><path d="M44 28h9l6 9v7H44Z"/><circle cx="16" cy="48" r="5"/><circle cx="48" cy="48" r="5"/><path d="M10 26h20v9H10Z"/><path d="M8 14l4-6h24l4 6"/></svg><span>Стритфуд і&nbsp;фастфуд</span></li><li class="duo"><span class="s k-plate"><svg class="ic" aria-hidden="true" viewBox="0 0 64 64"><circle cx="32" cy="34" r="16"/><circle cx="32" cy="34" r="9"/><path d="M8 16v12q0 4 3 4t3-4V16M11 32v24"/><path d="M56 16q-6 5-6 14h6v26"/></svg><span>Кафе та&nbsp;ресторани</span></span><span class="s k-plate"><svg class="ic" aria-hidden="true" viewBox="0 0 64 64"><path d="M12 26h32v12a16 16 0 0 1-32 0Z"/><path d="M44 30h4a6 6 0 0 1 0 12h-5"/><path d="M22 6q-4 5 0 10t0 8M32 6q-4 5 0 10t0 8"/><path d="M8 60h40"/></svg><span>Кав'ярні</span></span></li><li class="s k-gold"><svg class="ic" aria-hidden="true" viewBox="0 0 64 64"><circle cx="24" cy="38" r="15"/><circle cx="24" cy="38" r="6"/><path d="M34 6 58 30M40 4l20 20"/><path d="M14 30q4-3 8 0"/></svg><span>Суші та&nbsp;заклади з&nbsp;доставкою</span></li><li class="s k-neon"><svg class="ic" aria-hidden="true" viewBox="0 0 64 64"><path d="M6 42Q18 18 32 18Q46 18 58 42Q46 35 32 35Q18 35 6 42Z"/><path d="M20 24l5 11M32 18v17M44 24l-5 11"/><path d="M14 54h36"/></svg><span>Пекарні та&nbsp;кондитерські</span></li><li class="duo"><span class="s k-board"><svg class="ic" aria-hidden="true" viewBox="0 0 64 64"><path d="M8 14Q32 2 56 14L32 60Z"/><path d="M12 20Q32 10 52 20"/><circle cx="27" cy="25" r="3.5"/><circle cx="38" cy="32" r="3.5"/><circle cx="30" cy="41" r="3"/></svg><span>Піцерії</span></span><span class="s k-board"><svg class="ic" aria-hidden="true" viewBox="0 0 64 64"><path d="M8 46h48"/><path d="M12 46a20 20 0 0 1 40 0"/><path d="M32 26v-5M28 21h8"/><path d="M50 4a8 8 0 1 0 8 12 7 7 0 1 1-8-12Z"/><path d="M20 54h24"/></svg><span>Dark kitchen</span></span></li><li class="s k-gold"><svg class="ic" aria-hidden="true" viewBox="0 0 64 64"><path d="M22 8h20l-4 48q-6 5-12 0Z"/><path d="M23 20h18M24 31h16M25 42h14"/><path d="M28 8q4-4 8 0"/></svg><span>Шаурма та&nbsp;чебуречні</span></li><li class="s k-neon x"><svg class="ic" aria-hidden="true" viewBox="0 0 64 64"><path d="M32 6l6 18 18 6-18 6-6 18-6-18-18-6 18-6Z"/><path d="M52 6v8M48 10h8M12 48v8M8 52h8"/></svg><span>Індивідуальні формати</span></li></ul>
+ <ul class="format-grid">
+  <li class="format-card">
+   <span class="format-icon"><svg class="ic" aria-hidden="true" viewBox="0 0 64 64"><circle cx="32" cy="34" r="16"/><circle cx="32" cy="34" r="9"/><path d="M8 16v12q0 4 3 4t3-4V16M11 32v24"/><path d="M56 16q-6 5-6 14h6v26"/></svg></span>
+   <h3>Формат ресторану</h3>
+   <p>Заклад із власним меню, повноцінною кухнею та обслуговуванням гостей у залі.</p>
+  </li>
+  <li class="format-card">
+   <span class="format-icon"><svg class="ic" aria-hidden="true" viewBox="0 0 64 64"><path d="M10 28Q10 10 32 10Q54 10 54 28Z"/><path d="M8 35q4-5 8 0t8 0 8 0 8 0 8 0 8 0"/><rect x="10" y="39" width="44" height="7" rx="3.5"/><path d="M10 50h44q0 9-9 9H19q-9 0-9-9Z"/><path d="M24 17h.01M34 15h.01M42 19h.01"/></svg></span>
+   <h3>Формат фастфуду</h3>
+   <p>Компактна точка з коротким меню, швидкою видачею та замовленнями навинос.</p>
+  </li>
+  <li class="format-card">
+   <span class="format-icon"><svg class="ic" aria-hidden="true" viewBox="0 0 64 64"><path d="M12 26h32v12a16 16 0 0 1-32 0Z"/><path d="M44 30h4a6 6 0 0 1 0 12h-5"/><path d="M22 6q-4 5 0 10t0 8M32 6q-4 5 0 10t0 8"/><path d="M8 60h40"/></svg></span>
+   <h3>Формат кав’ярні<br> чи пекарні</h3>
+   <p>Від кави із собою до закладу з власною випічкою та кількома столиками для гостей.</p>
+  </li>
+  <li class="format-card">
+   <span class="format-icon"><svg aria-hidden="true" viewBox="0 0 64 64"><circle cx="17" cy="48" r="7"/><circle cx="49" cy="48" r="7"/><path d="M15 48h17l9-24h10l5 9M49 48l-8-24-3-8h-7M17 41l4-9h12M32 48h6M7 30h10M4 38h8"/><rect x="14" y="20" width="17" height="12" rx="2"/></svg></span>
+   <h3>Формат кухні<br> для доставки</h3>
+   <p>Кухня, де меню, пакування та процеси розраховані на замовлення з доставкою.</p>
+  </li>
+ </ul>
+ <div class="format-custom">
+  <span class="format-icon"><svg aria-hidden="true" viewBox="0 0 64 64"><path d="M24 56H8V8h48v48H40M28 8v16m0 16v16m0-24h12m8 0h8"/></svg></span>
+  <h3>Вже маєте концепцію закладу?</h3>
+  <p>Допоможемо сформувати концепцію та визначити, що потрібно для запуску</p>
+ </div>
  <a class="cta cta-m" href="#lead">Обговорити формат закладу <i><svg viewBox="0 0 24 24"><path d="M6 18 18 6M9 6h9v9"/></svg></i></a>
 </section>
 
