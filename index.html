@@ -355,9 +355,9 @@ html,body{overflow-x:clip}
 @media (max-width:1179px) and (orientation:portrait){#formats{background-image:url(assets/formats-bg-m.webp);background-position:center bottom}}
 @media (max-width:767px){
  #formats{
-  --mobile-format-photo:url(assets/formats-bg-mobile-clean.jpg);
-  padding:4.2rem 20px clamp(68px,19vw,108px);
-  background:linear-gradient(180deg,#0a0c0e,#140e0e 88px,#140e0e calc(100% - 88px),#0a0c0e)
+  --mobile-format-photo:url(assets/formats-bg-mobile-reframed.jpg);
+  padding:4.2rem 20px clamp(120px,37vw,175px);
+  background:linear-gradient(180deg,#0a0c0e,#100e0e 88px,#100e0e calc(100% - 88px),#0a0c0e)
  }
  #formats:before,#formats:after{
   position:absolute;z-index:-1;pointer-events:none;
@@ -365,12 +365,16 @@ html,body{overflow-x:clip}
   background-size:100% auto
  }
  #formats:before{
-  inset:0 0 auto;height:clamp(226px,72vw,430px);
-  background-position:center -9.8vw;
+  inset:0 0 auto;height:clamp(226px,66vw,430px);
+  background-image:
+   radial-gradient(circle 138px at 29px 62px,rgba(10,12,14,.97),rgba(10,12,14,.85) 41%,transparent),
+   var(--mobile-format-photo);
+  background-size:100% 100%,100% auto;
+  background-position:center,center -22.45vw;
   mask-image:linear-gradient(transparent,#000 46px,#000 calc(100% - 64px),transparent)
  }
  #formats:after{
-  content:"";inset:auto 0 0;height:clamp(160px,48vw,260px);
+  content:"";inset:auto 0 0;height:clamp(168px,49vw,270px);
   background-position:center bottom;
   mask-image:linear-gradient(transparent,#000 52px,#000 calc(100% - 28px),transparent)
  }
@@ -382,8 +386,7 @@ html,body{overflow-x:clip}
  #formats .format-grid{grid-template-columns:1fr;gap:12px}
  #formats .format-card{
   display:grid;grid-template-columns:auto minmax(0,1fr);align-items:start;
-  gap:5px 12px;min-height:0;padding:14px;
-  background:linear-gradient(145deg,#252122,#151416)
+  gap:5px 12px;min-height:0;padding:14px
  }
  #formats .format-card .format-icon{grid-row:1 / span 2;width:34px;height:34px}
  #formats .format-card h3{min-height:0;margin:0;font-size:17px}
@@ -1639,7 +1642,7 @@ document.querySelectorAll('.band .run').forEach(function(r){
  /* заздалегідь декодуємо великі фото блоків у фоні, по одному, поки користувач угорі.
     Інакше браузер (особливо Safari) розпаковує фото в момент, коли блок з'являється, — це й давало ривок. */
  (function(){var mob=matchMedia('(max-width:1179px) and (orientation:portrait), (max-width:767px)').matches;
-  var list=[mob?'assets/formats-bg-m.webp':'assets/formats-bg.webp',mob?'assets/chef-grill-v.webp':'assets/chef-grill-h.webp','assets/price-cloche.webp','assets/after-open.webp',
+  var list=[matchMedia('(max-width:767px)').matches?'assets/formats-bg-mobile-reframed.jpg':mob?'assets/formats-bg-m.webp':'assets/formats-bg.webp',mob?'assets/chef-grill-v.webp':'assets/chef-grill-h.webp','assets/price-cloche.webp','assets/after-open.webp',
    'assets/p-greystone.jpg','assets/p-gsp.jpg','assets/p-eatit.jpg','assets/p-redcat.jpg','assets/p-pub-inside.jpg','assets/faq-q.webp'];
   window.__pre=[];var i=0,idle=window.requestIdleCallback||function(f){return setTimeout(f,200)};
   function next(){if(i>=list.length)return;var im=new Image();im.decoding='async';im.src=list[i++];window.__pre.push(im);
